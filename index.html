@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartesys — Autonomous Product Systems</title>
+    <meta name="description" content="Cartesys builds autonomous AI ecosystems that replace manual DevOps with intelligent, self-operating infrastructure. Build it, run it, sell it.">
+    <meta property="og:title" content="Cartesys — Autonomous Product Systems">
+    <meta property="og:description" content="Autonomous AI ecosystems that replace manual DevOps with intelligent, self-operating infrastructure.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cartesys.ai">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%2300D2B4'/%3E%3Cstop offset='100%25' stop-color='%233C64FF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='6' fill='url(%23g)'/%3E%3Ccircle cx='16' cy='16' r='3' fill='white'/%3E%3Ccircle cx='8' cy='8' r='2' fill='rgba(255,255,255,0.8)'/%3E%3Ccircle cx='24' cy='8' r='2' fill='rgba(255,255,255,0.8)'/%3E%3Ccircle cx='8' cy='24' r='2' fill='rgba(255,255,255,0.4)'/%3E%3Ccircle cx='24' cy='24' r='2' fill='rgba(255,255,255,0.4)'/%3E%3Cline x1='16' y1='16' x2='8' y2='8' stroke='rgba(255,255,255,0.6)' stroke-width='1'/%3E%3Cline x1='16' y1='16' x2='24' y2='8' stroke='rgba(255,255,255,0.6)' stroke-width='1'/%3E%3Cline x1='16' y1='16' x2='8' y2='24' stroke='rgba(255,255,255,0.3)' stroke-width='1'/%3E%3Cline x1='16' y1='16' x2='24' y2='24' stroke='rgba(255,255,255,0.3)' stroke-width='1'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --teal: #00D2B4;
+            --teal-dim: #00A08C;
+            --blue: #3C64FF;
+            --dark: #0A0A0F;
+            --dark-card: #111118;
+            --dark-border: #1E1E2A;
+            --light: #F5F5F7;
+            --text-light: #E8E8EC;
+            --text-muted: #8A8A9A;
+            --gradient: linear-gradient(135deg, #00D2B4, #3C64FF);
+            --font-display: 'Syne', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--dark);
+            color: var(--text-light);
+            line-height: 1.65;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--teal); text-decoration: none; transition: color 0.2s; }
+        a:hover { color: var(--blue); }
+
+        .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+        .section-label {
+            font-family: var(--font-display);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(30px, 4vw, 44px);
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.25;
+            letter-spacing: -0.5px;
+            margin-bottom: 18px;
+        }
+
+        .section-desc {
+            font-size: 17px;
+            color: var(--text-muted);
+            max-width: 560px;
+            line-height: 1.7;
+        }
+
+        .grid-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(0,210,180,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,210,180,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        .grid-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 800px 600px at 50% 0%, rgba(0,210,180,0.06), transparent 70%);
+        }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            transition: all 0.3s;
+        }
+        nav.scrolled {
+            background: rgba(10,10,15,0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--dark-border);
+            padding: 14px 0;
+        }
+        nav .container { display: flex; align-items: center; justify-content: space-between; }
+        .logo { display: flex; align-items: center; gap: 10px; }
+        .logo-icon { width: 36px; height: 36px; }
+        .logo-text {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 22px;
+            color: #fff;
+            letter-spacing: -0.5px;
+        }
+        .logo-text span { color: var(--teal); }
+        .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+        .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-muted); transition: color 0.2s; }
+        .nav-links a:hover { color: #fff; }
+        .nav-cta {
+            padding: 9px 22px;
+            background: var(--gradient);
+            color: #fff !important;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: opacity 0.2s;
+        }
+        .nav-cta:hover { opacity: 0.9; color: #fff !important; }
+        .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+        .mobile-toggle span { display: block; width: 22px; height: 2px; background: var(--text-light); margin: 5px 0; transition: all 0.3s; }
+
+        .hero {
+            position: relative;
+            z-index: 1;
+            padding: 180px 0 120px;
+            text-align: center;
+        }
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: rgba(0,210,180,0.08);
+            border: 1px solid rgba(0,210,180,0.15);
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 32px;
+        }
+        .hero-label .dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--teal);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(38px, 5.5vw, 64px);
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            max-width: 800px;
+            margin: 0 auto 12px;
+        }
+        .hero .hero-tagline {
+            font-family: var(--font-display);
+            font-size: clamp(18px, 2.5vw, 26px);
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 28px;
+        }
+        .hero p {
+            font-size: 19px;
+            color: var(--text-muted);
+            max-width: 580px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            background: var(--gradient);
+            color: #fff;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.25s;
+            border: none;
+            cursor: pointer;
+        }
+        .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,210,180,0.25); color: #fff; }
+        .hero-cta svg { width: 18px; height: 18px; }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 64px;
+            margin-top: 80px;
+            padding-top: 48px;
+            border-top: 1px solid var(--dark-border);
+        }
+        .hero-stat { text-align: center; }
+        .hero-stat .number {
+            font-family: var(--font-display);
+            font-size: 40px;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-stat .label { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+
+        .products { position: relative; z-index: 1; padding: 100px 0; }
+        .products-header { text-align: center; margin-bottom: 60px; }
+        .products-header .section-desc { margin: 0 auto; }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .product-card {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 16px;
+            padding: 36px 28px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .product-card:hover { border-color: rgba(0,210,180,0.2); transform: translateY(-4px); }
+        .product-card:hover::before { opacity: 1; }
+        .product-icon {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            background: rgba(0,210,180,0.08);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+        .product-card h3 { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 10px; letter-spacing: -0.3px; }
+        .product-card p { font-size: 15px; color: var(--text-muted); line-height: 1.65; }
+        .product-tag {
+            display: inline-block;
+            font-size: 11px; font-weight: 600;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            padding: 4px 10px; border-radius: 6px; margin-top: 16px;
+        }
+        .tag-live { background: rgba(0,210,180,0.1); color: var(--teal); }
+        .tag-dev { background: rgba(60,100,255,0.1); color: var(--blue); }
+
+        .whatwebuild { position: relative; z-index: 1; padding: 100px 0; }
+        .whatwebuild-header { text-align: center; margin-bottom: 60px; }
+        .whatwebuild-header .section-desc { margin: 0 auto; }
+        .whatwebuild-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .whatwebuild-card {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 16px;
+            padding: 36px 28px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .whatwebuild-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .whatwebuild-card:hover { border-color: rgba(0,210,180,0.2); transform: translateY(-4px); }
+        .whatwebuild-card:hover::before { opacity: 1; }
+        .whatwebuild-icon {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            background: rgba(0,210,180,0.08);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+        .whatwebuild-card h3 { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 10px; letter-spacing: -0.3px; }
+        .whatwebuild-card p { font-size: 15px; color: var(--text-muted); line-height: 1.65; }
+
+        .platform { position: relative; z-index: 1; padding: 100px 0; }
+        .platform-header { text-align: center; margin-bottom: 60px; }
+        .platform-header .section-desc { margin: 0 auto; }
+        .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .pillar-card {
+            display: flex; gap: 16px; padding: 28px;
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 14px;
+            transition: border-color 0.3s;
+        }
+        .pillar-card:hover { border-color: rgba(0,210,180,0.2); }
+        .pillar-num {
+            font-family: var(--font-display);
+            font-size: 32px; font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1; flex-shrink: 0;
+        }
+        .pillar-card h3 { font-family: var(--font-display); font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 6px; letter-spacing: -0.2px; }
+        .pillar-card p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+        .security { position: relative; z-index: 1; padding: 100px 0; }
+        .security-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+        .security-left .section-desc { margin-bottom: 32px; }
+        .security-layers { display: flex; flex-direction: column; gap: 12px; }
+        .layer {
+            display: flex; align-items: center; gap: 16px;
+            padding: 18px 22px;
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 12px;
+            transition: border-color 0.3s;
+        }
+        .layer:hover { border-color: rgba(0,210,180,0.2); }
+        .layer-num {
+            width: 32px; height: 32px; border-radius: 8px;
+            background: var(--gradient);
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-display); font-weight: 800; font-size: 14px; color: #fff;
+            flex-shrink: 0;
+        }
+        .layer h4 { font-size: 15px; font-weight: 600; color: #fff; }
+        .layer p { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+        .model { position: relative; z-index: 1; padding: 100px 0; }
+        .model-header { text-align: center; margin-bottom: 60px; }
+        .model-header .section-desc { margin: 0 auto; }
+        .model-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .model-card {
+            padding: 36px 28px;
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 16px;
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+        .model-card:hover { border-color: rgba(0,210,180,0.2); }
+        .model-card .icon {
+            width: 56px; height: 56px; border-radius: 14px;
+            background: rgba(0,210,180,0.06);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px; font-size: 26px;
+        }
+        .model-card h3 { font-family: var(--font-display); font-size: 19px; font-weight: 700; color: #fff; margin-bottom: 10px; letter-spacing: -0.3px; }
+        .model-card p { font-size: 15px; color: var(--text-muted); line-height: 1.65; }
+
+        .contact { position: relative; z-index: 1; padding: 100px 0 80px; }
+        .contact-box {
+            text-align: center;
+            padding: 80px 40px;
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-box::before {
+            content: '';
+            position: absolute;
+            top: -1px; left: 50%; transform: translateX(-50%);
+            width: 200px; height: 2px;
+            background: var(--gradient);
+        }
+        .contact-box h2 {
+            font-family: var(--font-display);
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+        .contact-box p { font-size: 17px; color: var(--text-muted); max-width: 480px; margin: 0 auto 32px; line-height: 1.7; }
+        .contact-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 32px;
+            background: var(--gradient); color: #fff;
+            border-radius: 10px; font-weight: 600; font-size: 16px;
+            transition: all 0.25s;
+        }
+        .contact-link:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,210,180,0.25); color: #fff; }
+
+        footer { position: relative; z-index: 1; border-top: 1px solid var(--dark-border); padding: 48px 0; }
+        .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        .footer-left { display: flex; align-items: center; gap: 24px; }
+        .footer-logo { font-family: var(--font-display); font-weight: 800; font-size: 18px; color: #fff; }
+        .footer-logo span { color: var(--teal); }
+        .footer-copy { font-size: 13px; color: var(--text-muted); }
+        .footer-links { display: flex; gap: 24px; }
+        .footer-links a { font-size: 13px; color: var(--text-muted); transition: color 0.2s; }
+        .footer-links a:hover { color: var(--teal); }
+
+        .legal-overlay {
+            display: none; position: fixed; inset: 0; z-index: 200;
+            background: rgba(10,10,15,0.95);
+            backdrop-filter: blur(10px);
+            overflow-y: auto; padding: 40px 24px;
+        }
+        .legal-overlay.active { display: block; }
+        .legal-content {
+            max-width: 720px; margin: 0 auto;
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 20px; padding: 48px 40px;
+        }
+        .legal-close {
+            position: fixed; top: 24px; right: 24px;
+            width: 40px; height: 40px; border-radius: 10px;
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            color: var(--text-muted); font-size: 20px;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s; z-index: 201;
+        }
+        .legal-close:hover { border-color: var(--teal); color: #fff; }
+        .legal-content h1 { font-family: var(--font-display); font-size: 28px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+        .legal-content .legal-date { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+        .legal-content h2 { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: #fff; margin-top: 32px; margin-bottom: 12px; }
+        .legal-content p, .legal-content li { font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 12px; }
+        .legal-content ul { padding-left: 20px; margin-bottom: 16px; }
+        .legal-content li { margin-bottom: 6px; }
+
+        .fade-up { opacity: 0; transform: translateY(30px); transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        .stagger > .fade-up:nth-child(1) { transition-delay: 0ms; }
+        .stagger > .fade-up:nth-child(2) { transition-delay: 80ms; }
+        .stagger > .fade-up:nth-child(3) { transition-delay: 160ms; }
+        .stagger > .fade-up:nth-child(4) { transition-delay: 240ms; }
+        .stagger > .fade-up:nth-child(5) { transition-delay: 320ms; }
+        .stagger > .fade-up:nth-child(6) { transition-delay: 400ms; }
+        .stagger > .fade-up:nth-child(7) { transition-delay: 480ms; }
+        .stagger > .fade-up:nth-child(8) { transition-delay: 560ms; }
+        .stagger > .fade-up:nth-child(9) { transition-delay: 640ms; }
+
+        @media (max-width: 900px) {
+            .security-layout { grid-template-columns: 1fr; gap: 40px; }
+            .model-cards { grid-template-columns: 1fr; }
+            .hero-stats { gap: 32px; flex-wrap: wrap; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-toggle { display: block; }
+            .nav-links.open {
+                display: flex; flex-direction: column;
+                position: absolute; top: 100%; left: 0; right: 0;
+                background: rgba(10,10,15,0.97);
+                backdrop-filter: blur(20px);
+                border-bottom: 1px solid var(--dark-border);
+                padding: 24px; gap: 20px;
+            }
+            .hero { padding: 140px 0 80px; }
+            .pillars-grid { grid-template-columns: 1fr; }
+            .whatwebuild-grid { grid-template-columns: 1fr; }
+            .legal-content { padding: 32px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+
+<nav id="nav">
+    <div class="container">
+        <a href="#" class="logo">
+            <svg class="logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="18" cy="18" r="3.5" fill="#00D2B4"/>
+                <circle cx="8" cy="8" r="2.2" fill="#00D2B4" opacity="0.9"/>
+                <circle cx="28" cy="8" r="2.2" fill="#3C64FF" opacity="0.9"/>
+                <circle cx="8" cy="28" r="2.2" fill="#00D2B4" opacity="0.3"/>
+                <circle cx="28" cy="28" r="2.2" fill="#3C64FF" opacity="0.3"/>
+                <line x1="18" y1="18" x2="8" y2="8" stroke="#00D2B4" stroke-width="1.2" opacity="0.5"/>
+                <line x1="18" y1="18" x2="28" y2="8" stroke="#3C64FF" stroke-width="1.2" opacity="0.5"/>
+                <line x1="18" y1="18" x2="8" y2="28" stroke="#00D2B4" stroke-width="1.2" opacity="0.2"/>
+                <line x1="18" y1="18" x2="28" y2="28" stroke="#3C64FF" stroke-width="1.2" opacity="0.2"/>
+                <line x1="0" y1="18" x2="36" y2="18" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/>
+                <line x1="18" y1="0" x2="18" y2="36" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/>
+            </svg>
+            <div class="logo-text">carte<span>sys</span></div>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#whatwebuild">What We Build</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#platform">Platform</a></li>
+            <li><a href="#security">Security</a></li>
+            <li><a href="#model">Model</a></li>
+            <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+        </ul>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="container">
+        <div class="hero-label"><span class="dot"></span>Building in Production</div>
+        <h1>Cartesys</h1>
+        <div class="hero-tagline">Autonomous Product Systems</div>
+        <p>We build autonomous AI ecosystems that replace manual DevOps with intelligent, self-operating infrastructure. Every system we ship is built to run itself.</p>
+        <a href="#contact" class="hero-cta">
+            Start a Conversation
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <div class="hero-stats">
+            <div class="hero-stat fade-up"><div class="number">4+</div><div class="label">Products in Production</div></div>
+            <div class="hero-stat fade-up"><div class="number">89+</div><div class="label">Platform Capabilities</div></div>
+            <div class="hero-stat fade-up"><div class="number">6</div><div class="label">Security Layers</div></div>
+        </div>
+    </div>
+</section>
+
+<section class="whatwebuild" id="whatwebuild">
+    <div class="container">
+        <div class="whatwebuild-header fade-up">
+            <div class="section-label">What We Build</div>
+            <div class="section-title">Self-Operating Product Ecosystems</div>
+            <p class="section-desc">Complete product systems designed for autonomous operation, clean transfer, and compounding value over time.</p>
+        </div>
+        <div class="whatwebuild-grid stagger">
+            <div class="whatwebuild-card fade-up">
+                <div class="whatwebuild-icon">&#9881;</div>
+                <h3>AI-Orchestrated Operations</h3>
+                <p>Deployment, monitoring, error detection, and resolution handled by AI agents — escalating to humans only when it matters.</p>
+            </div>
+            <div class="whatwebuild-card fade-up">
+                <div class="whatwebuild-icon">&#128737;</div>
+                <h3>Self-Healing Infrastructure</h3>
+                <p>Autonomous monitoring with human-in-the-loop approval. Systems detect issues, propose fixes, and execute with oversight.</p>
+            </div>
+            <div class="whatwebuild-card fade-up">
+                <div class="whatwebuild-icon">&#128640;</div>
+                <h3>One-Command Provisioning</h3>
+                <p>Stand up complete production infrastructure — server, database, DNS, security, payments — with a single command. Minutes, not weeks.</p>
+            </div>
+            <div class="whatwebuild-card fade-up">
+                <div class="whatwebuild-icon">&#128274;</div>
+                <h3>Clean Carve-Out Design</h3>
+                <p>Every product is a standalone system with its own infrastructure, data, and identity. Build it, run it, sell it — no entanglement.</p>
+            </div>
+            <div class="whatwebuild-card fade-up">
+                <div class="whatwebuild-icon">&#128736;</div>
+                <h3>Parallel AI Workstreams</h3>
+                <p>Multiple AI agents work simultaneously on different parts of the same product. What takes a team weeks, we ship in days.</p>
+            </div>
+            <div class="whatwebuild-card fade-up">
+                <div class="whatwebuild-icon">&#128170;</div>
+                <h3>Compounding Platform</h3>
+                <p>Every product built makes the next one faster. 60–70% of each new product reuses components already running in production.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="products" id="products">
+    <div class="container">
+        <div class="products-header fade-up">
+            <div class="section-label">Live Products</div>
+            <div class="section-title">AI Products for Real Problems</div>
+            <p class="section-desc">Each product solves a distinct problem. Each one makes the platform stronger for the next.</p>
+        </div>
+        <div class="products-grid stagger">
+            <div class="product-card fade-up">
+                <div class="product-icon">&#127968;</div>
+                <h3>aiGalileo</h3>
+                <p>AI family assistant that turns household chaos into organized clarity. Ingests emails, calendars, and school communications to deliver daily briefings.</p>
+                <span class="product-tag tag-live">Launching 2026</span>
+            </div>
+            <div class="product-card fade-up">
+                <div class="product-icon">&#127950;</div>
+                <h3>aiProDriver</h3>
+                <p>AI coaching platform for amateur racing drivers. Analyzes telemetry data to deliver personalized performance insights and track strategy.</p>
+                <span class="product-tag tag-dev">In Development</span>
+            </div>
+            <div class="product-card fade-up">
+                <div class="product-icon">&#128674;</div>
+                <h3>aiCruiseDirector</h3>
+                <p>Intelligent cruise companion that personalizes the onboard experience with real-time recommendations, scheduling, and activity planning.</p>
+                <span class="product-tag tag-dev">In Development</span>
+            </div>
+            <div class="product-card fade-up">
+                <div class="product-icon">&#127973;</div>
+                <h3>ProVault</h3>
+                <p>Healthcare credential management platform that streamlines provider verification, compliance tracking, and regulatory documentation.</p>
+                <span class="product-tag tag-dev">In Development</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="platform" id="platform">
+    <div class="container">
+        <div class="platform-header fade-up">
+            <div class="section-label">The Platform</div>
+            <div class="section-title">Structured Autonomy</div>
+            <p class="section-desc">AI agents are powerful — but without structure, they create chaos. Our platform turns AI into a reliable operations partner.</p>
+        </div>
+        <div class="pillars-grid stagger">
+            <div class="pillar-card fade-up"><div class="pillar-num">01</div><div><h3>Capability Registry</h3><p>A searchable catalog of every tool, pattern, and integration across all projects. Search before you build. Reuse before you create.</p></div></div>
+            <div class="pillar-card fade-up"><div class="pillar-num">02</div><div><h3>Agent Orchestration</h3><p>AI workers handle code deployment, workflow management, security scanning, and incident response — with full progress tracking and recovery.</p></div></div>
+            <div class="pillar-card fade-up"><div class="pillar-num">03</div><div><h3>Human-in-the-Loop Approval</h3><p>Autonomous execution with safety gates. AI proposes, humans approve critical actions. The right balance of speed and control.</p></div></div>
+            <div class="pillar-card fade-up"><div class="pillar-num">04</div><div><h3>Contract-First Coordination</h3><p>When multiple AI workers touch connected systems, upstream publishes a contract before downstream begins. Zero mismatches.</p></div></div>
+            <div class="pillar-card fade-up"><div class="pillar-num">05</div><div><h3>Self-Healing Monitoring</h3><p>Autonomous error detection and resolution. Systems diagnose issues, apply fixes, and verify results — escalating only when needed.</p></div></div>
+            <div class="pillar-card fade-up"><div class="pillar-num">06</div><div><h3>Cross-Pollination</h3><p>Products are independent in deployment but interconnected in learning. Every pattern and lesson improves all future products.</p></div></div>
+            <div class="pillar-card fade-up"><div class="pillar-num">07</div><div><h3>Quality Discipline</h3><p>Every AI task goes through rigorous review before execution. Self-testing, automatic recovery, and verified results — not blind trust.</p></div></div>
+            <div class="pillar-card fade-up"><div class="pillar-num">08</div><div><h3>Disaster Recovery by Default</h3><p>Encrypted backups, state snapshots, and recovery runbooks ship with every product. Not an afterthought — a launch requirement.</p></div></div>
+            <div class="pillar-card fade-up"><div class="pillar-num">09</div><div><h3>Living Documentation</h3><p>Instructions built on principles and pointers, not static facts. Every session starts informed. Every lesson feeds back into the system.</p></div></div>
+        </div>
+    </div>
+</section>
+
+<section class="security" id="security">
+    <div class="container">
+        <div class="security-layout">
+            <div class="security-left fade-up">
+                <div class="section-label">Security &amp; Compliance</div>
+                <div class="section-title">Enterprise-Grade From Day One</div>
+                <p class="section-desc">Not a future goal — the current reality. Every production server runs our 6-layer hardening standard. No exceptions.</p>
+            </div>
+            <div class="security-layers stagger">
+                <div class="layer fade-up"><div class="layer-num">1</div><div><h4>Network Firewall</h4><p>Cloud security groups restrict traffic to essential ports only</p></div></div>
+                <div class="layer fade-up"><div class="layer-num">2</div><div><h4>Host Firewall</h4><p>Defense-in-depth with a second independent firewall layer</p></div></div>
+                <div class="layer fade-up"><div class="layer-num">3</div><div><h4>Key-Only Authentication</h4><p>Password login disabled. Cryptographic key pairs only</p></div></div>
+                <div class="layer fade-up"><div class="layer-num">4</div><div><h4>Intrusion Prevention</h4><p>Automatic ban on repeated failed access attempts</p></div></div>
+                <div class="layer fade-up"><div class="layer-num">5</div><div><h4>Automatic Patching</h4><p>Security updates applied automatically without manual intervention</p></div></div>
+                <div class="layer fade-up"><div class="layer-num">6</div><div><h4>Encrypted Backups</h4><p>Military-grade encryption before data ever leaves the server</p></div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="model" id="model">
+    <div class="container">
+        <div class="model-header fade-up">
+            <div class="section-label">Business Model</div>
+            <div class="section-title">Build Once. Compound Forever.</div>
+            <p class="section-desc">Every engagement makes the platform stronger. Product #5 launches faster than Product #1 because it inherits everything the earlier products learned.</p>
+        </div>
+        <div class="model-cards stagger">
+            <div class="model-card fade-up"><div class="icon">&#129521;</div><h3>Platform Ownership</h3><p>Cartesys retains the shared platform — tools, security patterns, and autonomous operations that power every product.</p></div>
+            <div class="model-card fade-up"><div class="icon">&#128273;</div><h3>Client Ownership</h3><p>Clients own their application code and infrastructure. Each product is fully separable and can be sold or transferred independently.</p></div>
+            <div class="model-card fade-up"><div class="icon">&#128200;</div><h3>Compounding Value</h3><p>89+ capabilities and growing. Every engagement widens the moat. The methodology itself is the competitive advantage.</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="contact" id="contact">
+    <div class="container">
+        <div class="contact-box fade-up">
+            <h2>Let's Build Something</h2>
+            <p>Whether you have a product idea, a compliance challenge, or a workflow that needs AI — we'd love to talk.</p>
+            <a href="mailto:info@cartesys.ai" class="contact-link">
+                info@cartesys.ai
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-left">
+                <div class="footer-logo">carte<span>sys</span></div>
+                <span class="footer-copy">&copy; 2026 Cartesys LLC. All rights reserved.</span>
+            </div>
+            <div class="footer-links">
+                <a href="#" onclick="openLegal('privacy'); return false;">Privacy Policy</a>
+                <a href="#" onclick="openLegal('terms'); return false;">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div class="legal-overlay" id="privacy">
+    <button class="legal-close" onclick="closeLegal()">&times;</button>
+    <div class="legal-content">
+        <h1>Privacy Policy</h1>
+        <p class="legal-date">Effective: February 25, 2026</p>
+        <h2>1. Introduction</h2>
+        <p>Cartesys LLC ("Cartesys," "we," "us," or "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website at cartesys.ai (the "Site") or use any of our products and services.</p>
+        <h2>2. Information We Collect</h2>
+        <p><strong>Information You Provide:</strong> When you contact us via email or through our website, we may collect your name, email address, company name, and any other information you voluntarily provide in your communications.</p>
+        <p><strong>Automatically Collected Information:</strong> When you visit our Site, we may automatically collect certain information about your device, including your IP address, browser type, operating system, referring URLs, and pages viewed. We use Cloudflare for DNS and security services, which may collect standard web traffic data.</p>
+        <p><strong>Product-Specific Data:</strong> Each Cartesys product has its own data collection and processing practices, documented separately within that product's terms of use. This policy covers only the cartesys.ai website.</p>
+        <h2>3. How We Use Your Information</h2>
+        <p>We use the information we collect to:</p>
+        <ul><li>Respond to your inquiries and communications</li><li>Improve and maintain our website and services</li><li>Protect against unauthorized access and abuse</li><li>Comply with legal obligations</li></ul>
+        <h2>4. Information Sharing</h2>
+        <p>We do not sell, trade, or rent your personal information to third parties. We may share information with:</p>
+        <ul><li><strong>Service Providers:</strong> Third-party vendors who assist us in operating our website and services (e.g., cloud hosting, email delivery, DNS management). These providers are contractually obligated to protect your data.</li><li><strong>Legal Requirements:</strong> When required by law, subpoena, court order, or other legal process, or to protect our rights, property, or safety.</li></ul>
+        <h2>5. Data Security</h2>
+        <p>We implement industry-standard security measures to protect your information, including encryption in transit (TLS 1.2+), encrypted storage, and restricted access controls. However, no method of transmission over the Internet is 100% secure.</p>
+        <h2>6. Data Retention</h2>
+        <p>We retain personal information only as long as necessary to fulfill the purposes for which it was collected, including any legal, accounting, or reporting requirements.</p>
+        <h2>7. Your Rights</h2>
+        <p>Depending on your jurisdiction, you may have the right to access, correct, delete, or port your personal data. To exercise these rights, contact us at <a href="mailto:info@cartesys.ai">info@cartesys.ai</a>.</p>
+        <h2>8. Cookies</h2>
+        <p>Our website may use essential cookies required for security and site functionality (provided by Cloudflare). We do not use advertising or tracking cookies.</p>
+        <h2>9. Children's Privacy</h2>
+        <p>Our website is not directed to children under 13. We do not knowingly collect personal information from children under 13. If you believe we have collected such information, please contact us immediately.</p>
+        <h2>10. Changes to This Policy</h2>
+        <p>We may update this Privacy Policy from time to time. The updated version will be indicated by the "Effective" date at the top. We encourage you to review this policy periodically.</p>
+        <h2>11. Contact Us</h2>
+        <p>If you have questions about this Privacy Policy, please contact us at:<br>Cartesys LLC<br>Email: <a href="mailto:info@cartesys.ai">info@cartesys.ai</a></p>
+    </div>
+</div>
+
+<div class="legal-overlay" id="terms">
+    <button class="legal-close" onclick="closeLegal()">&times;</button>
+    <div class="legal-content">
+        <h1>Terms of Service</h1>
+        <p class="legal-date">Effective: February 25, 2026</p>
+        <h2>1. Agreement to Terms</h2>
+        <p>By accessing and using the Cartesys LLC ("Cartesys," "we," "us," or "our") website at cartesys.ai (the "Site"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, do not use the Site.</p>
+        <h2>2. Description of Services</h2>
+        <p>Cartesys is a software development company that builds AI-powered products on a proprietary platform. The Site provides information about our company, products, services, and methodology. Individual products are governed by separate terms of use provided at the time of engagement.</p>
+        <h2>3. Intellectual Property</h2>
+        <p>All content on this Site — including text, graphics, logos, icons, images, and software — is the property of Cartesys LLC and is protected by United States and international copyright, trademark, and other intellectual property laws. You may not reproduce, distribute, modify, or create derivative works from any content on this Site without our prior written consent.</p>
+        <p>The Cartesys name, logo, wordmark, and all related product names, design marks, slogans, and trade dress are trademarks or registered trademarks of Cartesys LLC.</p>
+        <h2>4. Acceptable Use</h2>
+        <p>You agree not to:</p>
+        <ul><li>Use the Site for any unlawful purpose or in violation of any applicable laws</li><li>Attempt to gain unauthorized access to any portion of the Site or its related systems</li><li>Interfere with or disrupt the integrity or performance of the Site</li><li>Scrape, crawl, or otherwise automatically access the Site without our prior written permission</li><li>Reverse-engineer, decompile, or disassemble any part of the Site</li></ul>
+        <h2>5. Client Engagements</h2>
+        <p>Any consulting, development, or product engagement with Cartesys will be governed by a separate written agreement. Nothing on this Site constitutes an offer or contract for services. General information about our methodology and capabilities is provided for informational purposes only.</p>
+        <h2>6. Disclaimer of Warranties</h2>
+        <p>THE SITE IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. We do not warrant that the Site will be uninterrupted, error-free, or free of viruses or other harmful components.</p>
+        <h2>7. Limitation of Liability</h2>
+        <p>TO THE FULLEST EXTENT PERMITTED BY LAW, CARTESYS LLC SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, ARISING FROM YOUR USE OF OR INABILITY TO USE THE SITE.</p>
+        <h2>8. Indemnification</h2>
+        <p>You agree to indemnify, defend, and hold harmless Cartesys LLC, its officers, directors, employees, and agents from and against any claims, liabilities, damages, losses, and expenses arising out of or relating to your use of the Site or your violation of these Terms.</p>
+        <h2>9. Third-Party Links</h2>
+        <p>The Site may contain links to third-party websites or services that are not owned or controlled by Cartesys. We have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party websites.</p>
+        <h2>10. Governing Law</h2>
+        <p>These Terms shall be governed by and construed in accordance with the laws of the State of Florida, without regard to its conflict of law provisions. Any disputes arising from these Terms shall be resolved in the state or federal courts located in Seminole County, Florida.</p>
+        <h2>11. Severability</h2>
+        <p>If any provision of these Terms is held to be unenforceable, the remaining provisions shall continue in full force and effect.</p>
+        <h2>12. Changes to Terms</h2>
+        <p>We reserve the right to modify these Terms at any time. Changes will be effective immediately upon posting to the Site. Your continued use of the Site after changes constitutes acceptance of the modified Terms.</p>
+        <h2>13. Contact</h2>
+        <p>For questions about these Terms of Service, contact us at:<br>Cartesys LLC<br>Email: <a href="mailto:info@cartesys.ai">info@cartesys.ai</a></p>
+    </div>
+</div>
+
+<script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); });
+    document.getElementById('mobileToggle').addEventListener('click', () => { document.getElementById('navLinks').classList.toggle('open'); });
+    document.querySelectorAll('.nav-links a').forEach(link => { link.addEventListener('click', () => { document.getElementById('navLinks').classList.remove('open'); }); });
+    const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    function openLegal(id) { document.getElementById(id).classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeLegal() { document.querySelectorAll('.legal-overlay').forEach(el => el.classList.remove('active')); document.body.style.overflow = ''; }
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLegal(); });
+    document.querySelectorAll('.legal-overlay').forEach(overlay => { overlay.addEventListener('click', (e) => { if (e.target === overlay) closeLegal(); }); });
+</script>
+
+</body>
+</html>
