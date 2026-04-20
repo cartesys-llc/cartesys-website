@@ -30,6 +30,12 @@
   --rose: #F43F5E;
   --emerald: #10B981;
   --violet: #8B5CF6;
+  --sky: #38BDF8;
+  --pink: #EC4899;
+  --lime: #A3E635;
+  --orange: #FB923C;
+  --indigo: #6366F1;
+  --cyan: #22D3EE;
   --font-display: 'Manrope', sans-serif;
   --font-body: 'DM Sans', sans-serif;
 }
@@ -259,7 +265,7 @@ section { position: relative; z-index: 1; padding: 100px 0; }
 .build-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
 
 .products-section { background: var(--dark-card); }
-.product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; margin-top: 48px; }
+.product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-top: 48px; }
 
 .product-card {
   background: var(--dark);
@@ -267,10 +273,12 @@ section { position: relative; z-index: 1; padding: 100px 0; }
   border-radius: 20px;
   padding: 32px;
   transition: 0.3s;
+  display: flex;
+  flex-direction: column;
 }
 .product-card:hover { border-color: rgba(0, 210, 180, 0.15); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3); }
 
-.product-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; }
+.product-header { display: flex; align-items: flex-start; margin-bottom: 20px; }
 .product-icon {
   width: 52px;
   height: 52px;
@@ -280,24 +288,20 @@ section { position: relative; z-index: 1; padding: 100px 0; }
   border-radius: 14px;
   font-size: 1.4rem;
 }
-.product-card:nth-child(1) .product-icon { background: rgba(0, 210, 180, 0.1); }
-.product-card:nth-child(2) .product-icon { background: rgba(245, 158, 11, 0.1); }
-.product-card:nth-child(3) .product-icon { background: rgba(60, 100, 255, 0.1); }
-.product-card:nth-child(4) .product-icon { background: rgba(244, 63, 94, 0.1); }
-.product-card:nth-child(5) .product-icon { background: rgba(139, 92, 246, 0.1); }
 
-.product-status {
-  font-family: var(--font-display);
-  font-size: 10px;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: 100px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-.status-live { background: rgba(16, 185, 129, 0.1); color: var(--emerald); }
-.status-dev { background: rgba(245, 158, 11, 0.1); color: var(--amber); }
-.status-spec { background: rgba(139, 92, 246, 0.1); color: var(--violet); }
+/* 12-color cycle for product icon backgrounds */
+.product-card:nth-child(12n+1) .product-icon { background: rgba(0, 210, 180, 0.1); }
+.product-card:nth-child(12n+2) .product-icon { background: rgba(60, 100, 255, 0.1); }
+.product-card:nth-child(12n+3) .product-icon { background: rgba(244, 63, 94, 0.1); }
+.product-card:nth-child(12n+4) .product-icon { background: rgba(139, 92, 246, 0.1); }
+.product-card:nth-child(12n+5) .product-icon { background: rgba(245, 158, 11, 0.1); }
+.product-card:nth-child(12n+6) .product-icon { background: rgba(16, 185, 129, 0.1); }
+.product-card:nth-child(12n+7) .product-icon { background: rgba(56, 189, 248, 0.1); }
+.product-card:nth-child(12n+8) .product-icon { background: rgba(236, 72, 153, 0.1); }
+.product-card:nth-child(12n+9) .product-icon { background: rgba(163, 230, 53, 0.1); }
+.product-card:nth-child(12n+10) .product-icon { background: rgba(251, 146, 60, 0.1); }
+.product-card:nth-child(12n+11) .product-icon { background: rgba(99, 102, 241, 0.1); }
+.product-card:nth-child(12n) .product-icon { background: rgba(34, 211, 238, 0.1); }
 
 .product-name {
   font-family: var(--font-display);
@@ -307,7 +311,7 @@ section { position: relative; z-index: 1; padding: 100px 0; }
   margin-bottom: 10px;
   letter-spacing: -0.3px;
 }
-.product-desc { font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; }
+.product-desc { font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; flex-grow: 1; }
 
 .product-features { display: flex; flex-wrap: wrap; gap: 6px; }
 .product-tag {
@@ -561,26 +565,27 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--dark-border
   <div class="container fade-up">
     <div class="section-label">Product Portfolio</div>
     <div class="section-title">AI Products for Real Problems</div>
-    <p class="section-desc">Each product solves a distinct, real-world problem. Each one makes the platform stronger for the next.</p>
+    <p class="section-desc">Twelve products. One compounding platform. Each one solves a distinct, real-world problem — and each one makes the next one faster to build.</p>
     <div class="product-grid">
 
       <div class="product-card">
-        <div class="product-header"><div class="product-icon">🏠</div><span class="product-status status-dev">In Development</span></div>
+        <div class="product-header"><div class="product-icon">🏠</div></div>
         <div class="product-name">aiGalileo</div>
-        <p class="product-desc">AI family command center that ingests the chaos of household life — school emails, permission slips, calendars, newsletters — and transforms it into structured, searchable intelligence. Morning and afternoon briefings delivered via push notification.</p>
+        <p class="product-desc">AI family command center that ingests the chaos of household life — school emails, permission slips, calendars, newsletters, coach texts — and transforms it into a single searchable intelligence layer. Morning and afternoon briefings land on your phone with the day's essentials already distilled. The household's operating system.</p>
         <div class="product-features">
           <span class="product-tag">Email Ingestion</span>
           <span class="product-tag">OCR Pipeline</span>
           <span class="product-tag">Daily Briefings</span>
           <span class="product-tag">Vector Search</span>
           <span class="product-tag">Push Notifications</span>
+          <span class="product-tag">iOS &amp; Android</span>
         </div>
       </div>
 
       <div class="product-card">
-        <div class="product-header"><div class="product-icon">🚢</div><span class="product-status status-dev">In Development</span></div>
-        <div class="product-name">AI Cruise Director</div>
-        <p class="product-desc">Intelligent cruise companion that knows your ship inside and out. RAG-powered AI chat trained on comprehensive ship data — deck plans, menus, schedules, pricing. Personalized itinerary, group coordination for travel companions, photo-based menu and schedule reading, Face ID secure sign-in, and Stripe checkout at $5 per sailing. Starting with Royal Caribbean's Utopia of the Seas, available on iOS and Android.</p>
+        <div class="product-header"><div class="product-icon">🚢</div></div>
+        <div class="product-name">aiCruiseDirector</div>
+        <p class="product-desc">Intelligent cruise companion that knows your ship inside and out. RAG-powered AI chat trained on comprehensive ship data — deck plans, menus, schedules, pricing. Personalized itinerary, group coordination for travel companions, photo-based menu and schedule reading via Claude Vision, Face ID secure sign-in, and Stripe checkout at $5 per sailing. Launching with Royal Caribbean's Utopia of the Seas on iOS and Android.</p>
         <div class="product-features">
           <span class="product-tag">Ship RAG Knowledge</span>
           <span class="product-tag">AI Chat</span>
@@ -588,46 +593,142 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--dark-border
           <span class="product-tag">Group Travel</span>
           <span class="product-tag">Photo OCR</span>
           <span class="product-tag">Face ID</span>
-          <span class="product-tag">iOS &amp; Android</span>
+          <span class="product-tag">Stripe Checkout</span>
         </div>
       </div>
 
       <div class="product-card">
-        <div class="product-header"><div class="product-icon">🏎</div><span class="product-status status-dev">In Development</span></div>
+        <div class="product-header"><div class="product-icon">🏎</div></div>
         <div class="product-name">aiProDriver</div>
-        <p class="product-desc">Motorsport coaching platform that doesn't just show you data — it tells you exactly what's costing you time and how to fix it. Longitudinal driver modeling builds a statistical fingerprint that evolves with every session. Garmin optimizes laps. We optimize drivers.</p>
+        <p class="product-desc">Motorsport coaching platform that doesn't just show you data — it tells you what's costing you time and how to fix it. A calm British race-engineer voice delivers real-time corner-level coaching. A longitudinal driver model builds a statistical fingerprint that evolves session over session. Garmin optimizes laps. We optimize drivers.</p>
         <div class="product-features">
           <span class="product-tag">Telemetry Analysis</span>
+          <span class="product-tag">Live Voice Engineer</span>
           <span class="product-tag">Driver Modeling</span>
-          <span class="product-tag">Priority Coaching</span>
           <span class="product-tag">Cross-Session Memory</span>
           <span class="product-tag">TrackAddict</span>
+          <span class="product-tag">AI Debrief</span>
         </div>
       </div>
 
       <div class="product-card">
-        <div class="product-header"><div class="product-icon">📋</div><span class="product-status status-spec">Spec Complete</span></div>
+        <div class="product-header"><div class="product-icon">🧠</div></div>
+        <div class="product-name">Cartesys Platform</div>
+        <p class="product-desc">The compounding foundation under every product. Shared MCP toolchains, capability registry, institutional knowledge base, agent orchestration, contract-first coordination, 6-layer security hardening, and automated disaster recovery. The platform is the product — and every engagement makes it stronger.</p>
+        <div class="product-features">
+          <span class="product-tag">MCP Servers</span>
+          <span class="product-tag">Capability Registry</span>
+          <span class="product-tag">Institutional Memory</span>
+          <span class="product-tag">Agent Orchestration</span>
+          <span class="product-tag">Disaster Recovery</span>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-header"><div class="product-icon">🎮</div></div>
+        <div class="product-name">aiProSimDriver</div>
+        <p class="product-desc">The sim-racing twin of aiProDriver, tuned for iRacing. A Windows desktop app reads live telemetry via pyirsdk, runs deterministic corner-level rules locally for zero-latency voice coaching, and uploads structured session data to the cloud for AI debrief. Stability-gated intervention keeps the radio quiet until you're ready to push — then unlocks proactive suggestions.</p>
+        <div class="product-features">
+          <span class="product-tag">iRacing Integration</span>
+          <span class="product-tag">pyirsdk Telemetry</span>
+          <span class="product-tag">Local Voice Engine</span>
+          <span class="product-tag">Stability Gating</span>
+          <span class="product-tag">Corner Segmentation</span>
+          <span class="product-tag">Cloud Debrief</span>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-header"><div class="product-icon">📋</div></div>
         <div class="product-name">aiAuthorize</div>
-        <p class="product-desc">Estimate negotiation engine that manages the space between sending a quote and getting a commitment. Per-line-item approval, structured change requests, immutable version history, and signed PDF export with cryptographic verification. Optional QuickBooks integration.</p>
+        <p class="product-desc">Estimate negotiation engine for contractors, fabricators, and service businesses. Manages the space between sending a quote and getting a commitment — per-line-item approval, structured change requests, immutable version history, and signed PDF export with cryptographic verification. Optional QuickBooks Online sync keeps the books in lockstep with the deal.</p>
         <div class="product-features">
           <span class="product-tag">Line-Item Approval</span>
           <span class="product-tag">Version History</span>
-          <span class="product-tag">Audit Trail</span>
+          <span class="product-tag">Change Requests</span>
           <span class="product-tag">Signed PDF</span>
+          <span class="product-tag">Audit Trail</span>
           <span class="product-tag">QBO Sync</span>
         </div>
       </div>
 
       <div class="product-card">
-        <div class="product-header"><div class="product-icon">🏥</div><span class="product-status status-spec">Spec Complete</span></div>
-        <div class="product-name">Vantari</div>
-        <p class="product-desc">HIPAA-compliant healthcare credentialing platform. Verifies clinician licenses, certifications, and employment history once — then transmits authenticated credentials to facilities via encrypted, expiring, auditable links. No recipient accounts required. Proactive expiration engine prevents credential lapses.</p>
+        <div class="product-header"><div class="product-icon">👥</div></div>
+        <div class="product-name">aiRecruiting</div>
+        <p class="product-desc">Executive search platform that compresses the sourcing-to-slate lifecycle. Candidate slate builder with 4-factor scoring, real-time transcription of live interviews, interview clip segmentation with time-stamped highlights, and team-wide activity feeds that prevent duplicate outreach. RecruiterFlow API integration keeps every system in sync.</p>
+        <div class="product-features">
+          <span class="product-tag">Slate Builder</span>
+          <span class="product-tag">4-Factor Scoring</span>
+          <span class="product-tag">Interview Transcription</span>
+          <span class="product-tag">Clip Segmentation</span>
+          <span class="product-tag">Team Activity Feed</span>
+          <span class="product-tag">ATS Integration</span>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-header"><div class="product-icon">🧪</div></div>
+        <div class="product-name">AiUAT</div>
+        <p class="product-desc">Autonomous user acceptance testing harness. AI generates test suites from product specs, synthetic user agents execute them against live staging environments, and regressions are surfaced before a human ever runs a manual scenario. Infrastructure intelligence plus synthetic user intelligence — the two engines that make QA keep pace with AI-assisted development.</p>
+        <div class="product-features">
+          <span class="product-tag">AI Test Generation</span>
+          <span class="product-tag">Synthetic Users</span>
+          <span class="product-tag">Infrastructure Intelligence</span>
+          <span class="product-tag">Regression Detection</span>
+          <span class="product-tag">CI/CD Hooks</span>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-header"><div class="product-icon">🏥</div></div>
+        <div class="product-name">ProVault</div>
+        <p class="product-desc">HIPAA-compliant healthcare credentialing platform. Verifies clinician licenses, certifications, and employment history once — then transmits authenticated credentials to facilities via encrypted, expiring, auditable links. No recipient accounts required. A proactive expiration engine prevents credential lapses before they become compliance events.</p>
         <div class="product-features">
           <span class="product-tag">HIPAA Compliant</span>
           <span class="product-tag">Credential Verification</span>
           <span class="product-tag">Expiring Links</span>
           <span class="product-tag">FHIR R4</span>
           <span class="product-tag">Audit Trail</span>
+          <span class="product-tag">Expiration Engine</span>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-header"><div class="product-icon">📄</div></div>
+        <div class="product-name">aiResume</div>
+        <p class="product-desc">Credential and portfolio sharing built the way modern hiring actually works. Candidates generate encrypted, expiring, revocable links to a single canonical profile — recruiters and hiring managers view résumé, portfolio, work samples, and verifications without creating an account. Every view is logged. Every link can be killed instantly.</p>
+        <div class="product-features">
+          <span class="product-tag">Expiring Tokens</span>
+          <span class="product-tag">Access Logs</span>
+          <span class="product-tag">Portfolio Hosting</span>
+          <span class="product-tag">Revocable Links</span>
+          <span class="product-tag">No-Account Viewing</span>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-header"><div class="product-icon">🎨</div></div>
+        <div class="product-name">aiWebDesign</div>
+        <p class="product-desc">AI-assisted web design studio for small businesses and independent operators. Brief a project in plain language — the system produces brand palette, typography, layout, and a deployed single-page site backed by the same hardening, DNS automation, and CI/CD patterns that power the rest of the Cartesys portfolio. Production-grade sites in hours, not weeks.</p>
+        <div class="product-features">
+          <span class="product-tag">Brief-to-Site</span>
+          <span class="product-tag">Brand Generation</span>
+          <span class="product-tag">Cloudflare Pages</span>
+          <span class="product-tag">Auto DNS</span>
+          <span class="product-tag">One-Command Deploy</span>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-header"><div class="product-icon">💬</div></div>
+        <div class="product-name">aiBeKind</div>
+        <p class="product-desc">Communication intelligence that catches tone before it lands. Analyzes drafts across email, chat, and messaging for aggression, passive-aggression, and misalignment, then offers reframed alternatives that preserve intent while lowering heat. Built for leaders, parents, partners, and anyone who has ever regretted hitting send.</p>
+        <div class="product-features">
+          <span class="product-tag">Tone Analysis</span>
+          <span class="product-tag">Reframe Suggestions</span>
+          <span class="product-tag">De-escalation</span>
+          <span class="product-tag">Intent Preservation</span>
+          <span class="product-tag">Cross-Platform</span>
         </div>
       </div>
 
@@ -674,7 +775,7 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--dark-border
   <div class="container fade-up">
     <div class="section-label">Business Model</div>
     <div class="section-title">Build Once. Compound Forever.</div>
-    <p class="section-desc">Every engagement makes the platform stronger. Product #5 launches faster than Product #1 because it inherits everything the earlier products learned.</p>
+    <p class="section-desc">Every engagement makes the platform stronger. The next product launches faster than the last because it inherits everything the earlier products learned.</p>
     <div class="model-grid">
       <div class="model-card"><div class="model-icon">🧱</div><h3>Platform Ownership</h3><p>Cartesys retains the shared platform — the toolchains, security patterns, AI orchestration, and autonomous operations that power every product. This is the compounding asset.</p></div>
       <div class="model-card"><div class="model-icon">🔑</div><h3>Client Ownership</h3><p>Clients own their application code and infrastructure. Each product is fully separable — its own server, database, domain, and identity. Sell it or transfer it with no entanglement.</p></div>
