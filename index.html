@@ -65,11 +65,31 @@ a:hover { color: var(--blue); }
                     linear-gradient(90deg, rgba(0, 210, 180, 0.03) 1px, transparent 1px);
   background-size: 60px 60px;
 }
+
+@keyframes grid-drift {
+  from { background-position: 0 0; }
+  to { background-position: 60px 60px; }
+}
+.grid-bg {
+  animation: grid-drift 90s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .grid-bg { animation: none; }
+}
 .grid-bg::after {
   content: "";
   position: absolute;
   inset: 0;
   background: radial-gradient(800px 600px at 50% 0%, rgba(0, 210, 180, 0.06), transparent 70%);
+  pointer-events: none;
+}
+.grid-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.45) 100%);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
@@ -204,22 +224,30 @@ nav .container { display: flex; align-items: center; justify-content: space-betw
 .hero-cta svg { width: 18px; height: 18px; transition: transform 0.3s; }
 .hero-cta:hover svg { transform: translateX(4px); }
 
-.hero-stats { display: flex; justify-content: center; gap: 56px; margin-top: 64px; }
-.hero-stat { text-align: center; }
+.hero-stats { display: flex; justify-content: center; gap: 80px; margin-top: 80px; flex-wrap: wrap; }
+.hero-stat { text-align: center; max-width: 220px; }
 .hero-stat-num {
   font-family: var(--font-display);
-  font-size: 36px;
+  font-size: 64px;
   font-weight: 800;
   color: #fff;
   line-height: 1;
-  letter-spacing: -0.5px;
+  letter-spacing: -2px;
 }
 .hero-stat-label {
   font-size: 12px;
-  color: var(--text-muted);
+  color: var(--teal);
   text-transform: uppercase;
   letter-spacing: 2px;
+  margin-top: 16px;
+  font-weight: 600;
+}
+.hero-stat-explainer {
+  font-size: 13px;
+  color: var(--text-muted);
   margin-top: 8px;
+  line-height: 1.5;
+  font-style: italic;
 }
 
 section { position: relative; z-index: 1; padding: 100px 0; }
@@ -228,38 +256,49 @@ section { position: relative; z-index: 1; padding: 100px 0; }
 
 .build-card {
   background: var(--dark-card);
-  border: 1px solid var(--dark-border);
+  border: 1px solid rgba(0, 210, 180, 0.08);
   border-radius: 16px;
   padding: 32px;
-  transition: 0.3s;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
 }
-.build-card::before {
+.build-card::before, .product-card::before, .model-card::before {
   content: "";
   position: absolute;
-  top: -1px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 2px;
   background: var(--gradient);
-  opacity: 0;
-  transition: opacity 0.3s;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  z-index: 1;
 }
-.build-card:hover { border-color: rgba(0, 210, 180, 0.2); transform: translateY(-4px); }
-.build-card:hover::before { opacity: 1; }
+.build-card:hover::before, .product-card:hover::before, .model-card:hover::before {
+  opacity: 1;
+}
+.build-card:hover {
+  border-color: rgba(0, 210, 180, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 210, 180, 0.12);
+}
 
 .build-icon {
   width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 210, 180, 0.08);
-  border-radius: 10px;
-  margin-bottom: 20px;
-  font-size: 1.2rem;
+  height: 4px;
+  background: rgba(0, 210, 180, 0.4);
+  border-radius: 2px;
+  margin-bottom: 28px;
+  display: block;
+}
+.model-icon {
+  width: 44px;
+  height: 4px;
+  background: rgba(0, 210, 180, 0.4);
+  border-radius: 2px;
+  margin-bottom: 28px;
+  display: block;
 }
 .build-card h3 { font-family: var(--font-display); font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 10px; letter-spacing: -0.2px; }
 .build-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
@@ -269,24 +308,28 @@ section { position: relative; z-index: 1; padding: 100px 0; }
 
 .product-card {
   background: var(--dark);
-  border: 1px solid var(--dark-border);
+  border: 1px solid rgba(0, 210, 180, 0.08);
   border-radius: 20px;
   padding: 32px;
-  transition: 0.3s;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow: hidden;
 }
-.product-card:hover { border-color: rgba(0, 210, 180, 0.15); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3); }
+.product-card:hover {
+  border-color: rgba(0, 210, 180, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0, 210, 180, 0.15);
+}
 
 .product-header { display: flex; align-items: flex-start; margin-bottom: 20px; }
 .product-icon {
   width: 52px;
-  height: 52px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 14px;
-  font-size: 1.4rem;
+  height: 4px;
+  border-radius: 2px;
+  margin-bottom: 28px;
+  display: block;
 }
 
 /* 12-color cycle for product icon backgrounds */
@@ -367,12 +410,17 @@ section { position: relative; z-index: 1; padding: 100px 0; }
 .model-card {
   padding: 32px;
   border-radius: 20px;
-  border: 1px solid var(--dark-border);
+  border: 1px solid rgba(0, 210, 180, 0.08);
   background: var(--dark-card);
-  transition: 0.3s;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
-.model-card:hover { border-color: rgba(0, 210, 180, 0.15); transform: translateY(-4px); }
-.model-icon { font-size: 28px; margin-bottom: 20px; }
+.model-card:hover {
+  border-color: rgba(0, 210, 180, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 210, 180, 0.12);
+}
 .model-card h3 { font-family: var(--font-display); font-size: 19px; font-weight: 700; color: #fff; margin-bottom: 10px; letter-spacing: -0.2px; }
 .model-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
 
@@ -474,6 +522,38 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--dark-border
 .fade-up { opacity: 0; transform: translateY(30px); transition: 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
 .fade-up.visible { opacity: 1; transform: translateY(0); }
 
+/* Hero fade-in-on-load — staggered cascade, each element 150ms after previous */
+@keyframes hero-fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero .hero-badge,
+.hero h1,
+.hero .hero-tagline,
+.hero .hero-desc,
+.hero .hero-cta,
+.hero .hero-stats {
+  opacity: 0;
+  animation: hero-fade-in 1.0s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.hero .hero-badge   { animation-delay: 0.15s; }
+.hero h1            { animation-delay: 0.30s; }
+.hero .hero-tagline { animation-delay: 0.45s; }
+.hero .hero-desc    { animation-delay: 0.60s; }
+.hero .hero-cta     { animation-delay: 0.75s; }
+.hero .hero-stats   { animation-delay: 0.90s; }
+@media (prefers-reduced-motion: reduce) {
+  .hero .hero-badge,
+  .hero h1,
+  .hero .hero-tagline,
+  .hero .hero-desc,
+  .hero .hero-cta,
+  .hero .hero-stats {
+    opacity: 1;
+    animation: none;
+  }
+}
+
 @media (max-width: 1024px) {
   .build-grid { grid-template-columns: repeat(2, 1fr); }
   .platform-grid { grid-template-columns: repeat(2, 1fr); }
@@ -498,7 +578,9 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--dark-border
     gap: 20px;
   }
   .hero { padding: 140px 0 80px; }
-  .hero-stats { flex-direction: column; gap: 24px; }
+  .hero-stats { flex-direction: column; gap: 40px; align-items: center; }
+  .hero-stat { max-width: 320px; }
+  .hero-stat-num { font-size: 48px; }
   section { padding: 64px 0; }
   .build-grid, .platform-grid, .model-grid { grid-template-columns: 1fr; }
   .product-grid { grid-template-columns: 1fr; }
@@ -538,9 +620,21 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--dark-border
     <p class="hero-desc">We build AI-powered product ecosystems that operate themselves. From provisioning infrastructure to deploying code, monitoring health, and resolving incidents — every system we ship is built to run without us.</p>
     <a href="#contact" class="hero-cta">Start a Conversation <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg></a>
     <div class="hero-stats">
-      <div class="hero-stat"><div class="hero-stat-num">136+</div><div class="hero-stat-label">Capabilities</div></div>
-      <div class="hero-stat"><div class="hero-stat-num">16</div><div class="hero-stat-label">MCP Toolchains</div></div>
-      <div class="hero-stat"><div class="hero-stat-num">6</div><div class="hero-stat-label">Security Layers</div></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">136+</div>
+        <div class="hero-stat-label">Capabilities</div>
+        <div class="hero-stat-explainer">Searchable in our shared platform registry</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">16</div>
+        <div class="hero-stat-label">MCP Toolchains</div>
+        <div class="hero-stat-explainer">Available to every product, from day one</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">6</div>
+        <div class="hero-stat-label">Security Layers</div>
+        <div class="hero-stat-explainer">Hardening every server before deployment</div>
+      </div>
     </div>
   </div>
 </section>
@@ -551,12 +645,12 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--dark-border
     <div class="section-title">Self-Operating Product Ecosystems</div>
     <p class="section-desc">Complete product systems designed for autonomous operation, clean ownership transfer, and compounding value over time.</p>
     <div class="build-grid">
-      <div class="build-card"><div class="build-icon">⚙</div><h3>AI-Orchestrated Operations</h3><p>Deployment, monitoring, error detection, and incident resolution handled by AI agents. Humans are escalated to — not required for — routine operations.</p></div>
-      <div class="build-card"><div class="build-icon">🛡</div><h3>Self-Healing Infrastructure</h3><p>Systems detect anomalies, diagnose root causes, propose fixes, and execute with human-in-the-loop approval gates. Autonomous, but never reckless.</p></div>
-      <div class="build-card"><div class="build-icon">🚀</div><h3>One-Command Provisioning</h3><p>Stand up complete production infrastructure — server, database, DNS, security hardening, payments, CI/CD — with two commands. Twenty minutes, not two weeks.</p></div>
-      <div class="build-card"><div class="build-icon">🔒</div><h3>Clean Carve-Out Design</h3><p>Every product is a standalone system with its own infrastructure, data, and identity. Build it, run it, sell it — zero entanglement with the rest of the portfolio.</p></div>
-      <div class="build-card"><div class="build-icon">⚡</div><h3>Parallel AI Workstreams</h3><p>Multiple AI agents work simultaneously across different layers of the same product. Contract-first coordination ensures zero mismatches. Days, not weeks.</p></div>
-      <div class="build-card"><div class="build-icon">📈</div><h3>Compounding Platform</h3><p>Every product built makes the next one faster. 60–70% of each new product reuses components already running in production. The fifth product launches in a fraction of the time of the first.</p></div>
+      <div class="build-card"><div class="build-icon"></div><h3>AI-Orchestrated Operations</h3><p>Deployment, monitoring, error detection, and incident resolution handled by AI agents. Humans are escalated to — not required for — routine operations.</p></div>
+      <div class="build-card"><div class="build-icon"></div><h3>Self-Healing Infrastructure</h3><p>Systems detect anomalies, diagnose root causes, propose fixes, and execute with human-in-the-loop approval gates. Autonomous, but never reckless.</p></div>
+      <div class="build-card"><div class="build-icon"></div><h3>One-Command Provisioning</h3><p>Stand up complete production infrastructure — server, database, DNS, security hardening, payments, CI/CD — with two commands. Twenty minutes, not two weeks.</p></div>
+      <div class="build-card"><div class="build-icon"></div><h3>Clean Carve-Out Design</h3><p>Every product is a standalone system with its own infrastructure, data, and identity. Build it, run it, sell it — zero entanglement with the rest of the portfolio.</p></div>
+      <div class="build-card"><div class="build-icon"></div><h3>Parallel AI Workstreams</h3><p>Multiple AI agents work simultaneously across different layers of the same product. Contract-first coordination ensures zero mismatches. Days, not weeks.</p></div>
+      <div class="build-card"><div class="build-icon"></div><h3>Compounding Platform</h3><p>Every product built makes the next one faster. 60–70% of each new product reuses components already running in production. The fifth product launches in a fraction of the time of the first.</p></div>
     </div>
   </div>
 </section>
@@ -569,7 +663,35 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--dark-border
     <div class="product-grid">
 
       <div class="product-card">
-        <div class="product-header"><div class="product-icon">🏠</div></div>
+        <div class="product-header"><div class="product-icon"></div></div>
+        <div class="product-name">Cartesys Platform</div>
+        <p class="product-desc">The compounding foundation under every product. Shared MCP toolchains, capability registry, institutional knowledge base, agent orchestration, contract-first coordination, 6-layer security hardening, and automated disaster recovery. The platform is the product — and every engagement makes it stronger.</p>
+        <div class="product-features">
+          <span class="product-tag">MCP Servers</span>
+          <span class="product-tag">Capability Registry</span>
+          <span class="product-tag">Institutional Memory</span>
+          <span class="product-tag">Agent Orchestration</span>
+          <span class="product-tag">Disaster Recovery</span>
+        </div>
+      </div>
+
+      <div class="product-card">
+  <div class="product-header"><div class="product-icon"></div></div>
+  <div class="product-name">Cartesys Intelligence Layer</div>
+  <p class="product-desc">AI orchestration and intelligence layer that sits on top of any system of record — Workday, Salesforce, NetSuite, Epic, ServiceNow, or your custom data backend. Same architectural primitives every time: deterministic detection finds the facts, AI generates the narrative, a validator gate confirms grounding, a human dispositions, and the source system's own approval workflows execute the action. AI never bypasses your audit trail; it accelerates it.</p>
+  <div class="product-features">
+    <span class="product-tag">Deterministic Detection</span>
+    <span class="product-tag">Generator-Validator</span>
+    <span class="product-tag">Human Disposition</span>
+    <span class="product-tag">Workday Integration</span>
+    <span class="product-tag">Salesforce Integration</span>
+    <span class="product-tag">Audit-Native</span>
+    <span class="product-tag">HRIS Agnostic</span>
+  </div>
+</div>
+
+      <div class="product-card">
+        <div class="product-header"><div class="product-icon"></div></div>
         <div class="product-name">aiGalileo</div>
         <p class="product-desc">AI family command center that ingests the chaos of household life — school emails, permission slips, calendars, newsletters, coach texts — and transforms it into a single searchable intelligence layer. Morning and afternoon briefings land on your phone with the day's essentials already distilled. The household's operating system.</p>
         <div class="product-features">
@@ -583,9 +705,9 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--dark-border
       </div>
 
       <div class="product-card">
-        <div class="product-header"><div class="product-icon">🚢</div></div>
+        <div class="product-header"><div class="product-icon"></div></div>
         <div class="product-name">aiCruiseDirector</div>
-        <p class="product-desc">Intelligent cruise companion that knows your ship inside and out. RAG-powered AI chat trained on comprehensive ship data — deck plans, menus, schedules, pricing. Personalized itinerary, group coordination for travel companions, photo-based menu and schedule reading via Claude Vision, Face ID secure sign-in, and Stripe checkout at $5 per sailing. Launching with Royal Caribbean's Utopia of the Seas on iOS and Android.</p>
+        <p class="product-desc">Intelligent cruise companion that knows your ship inside and out. RAG-powered AI chat trained on comprehensive ship data — deck plans, menus, schedules, pricing. Personalized itinerary, group coordination for travel companions, photo-based menu and schedule reading via Claude Vision, Face ID secure sign-in, and Stripe checkout at $5 per sailing. iOS and Android.</p>
         <div class="product-features">
           <span class="product-tag">Ship RAG Knowledge</span>
           <span class="product-tag">AI Chat</span>
@@ -598,7 +720,7 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--dark-border
       </div>
 
       <div class="product-card">
-        <div class="product-header"><div class="product-icon">🏎</div></div>
+        <div class="product-header"><div class="product-icon"></div></div>
         <div class="product-name">aiProDriver</div>
         <p class="product-desc">Motorsport coaching platform that doesn't just show you data — it tells you what's costing you time and how to fix it. A calm British race-engineer voice delivers real-time corner-level coaching. A longitudinal driver model builds a statistical fingerprint that evolves session over session. Garmin optimizes laps. We optimize drivers.</p>
         <div class="product-features">
@@ -612,20 +734,7 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--dark-border
       </div>
 
       <div class="product-card">
-        <div class="product-header"><div class="product-icon">🧠</div></div>
-        <div class="product-name">Cartesys Platform</div>
-        <p class="product-desc">The compounding foundation under every product. Shared MCP toolchains, capability registry, institutional knowledge base, agent orchestration, contract-first coordination, 6-layer security hardening, and automated disaster recovery. The platform is the product — and every engagement makes it stronger.</p>
-        <div class="product-features">
-          <span class="product-tag">MCP Servers</span>
-          <span class="product-tag">Capability Registry</span>
-          <span class="product-tag">Institutional Memory</span>
-          <span class="product-tag">Agent Orchestration</span>
-          <span class="product-tag">Disaster Recovery</span>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <div class="product-header"><div class="product-icon">🧑‍💼</div></div>
+        <div class="product-header"><div class="product-icon"></div></div>
         <div class="product-name">aiPeopleOps</div>
         <p class="product-desc">AI-first People Operations platform for multi-brand, multi-state enterprises. Pre-payroll anomaly detection with human-in-the-loop approval, natural-language workforce intelligence queries routed across structured and semantic data, a legal exposure dashboard for the CLC, and a full AI decision audit log for every model call. Deterministic math. LLM narrative. Every approval logged, every prompt traceable. Audit-ready the day it ships.</p>
         <div class="product-features">
@@ -640,7 +749,7 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--dark-border
       </div>
 
       <div class="product-card">
-        <div class="product-header"><div class="product-icon">📋</div></div>
+        <div class="product-header"><div class="product-icon"></div></div>
         <div class="product-name">aiAuthorize</div>
         <p class="product-desc">Estimate negotiation engine for contractors, fabricators, and service businesses. Manages the space between sending a quote and getting a commitment — per-line-item approval, structured change requests, immutable version history, and signed PDF export with cryptographic verification. Optional QuickBooks Online sync keeps the books in lockstep with the deal.</p>
         <div class="product-features">
@@ -654,7 +763,7 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--dark-border
       </div>
 
       <div class="product-card">
-        <div class="product-header"><div class="product-icon">👥</div></div>
+        <div class="product-header"><div class="product-icon"></div></div>
         <div class="product-name">aiRecruiting</div>
         <p class="product-desc">Executive search platform that compresses the sourcing-to-slate lifecycle. Candidate slate builder with 4-factor scoring, real-time transcription of live interviews, interview clip segmentation with time-stamped highlights, and team-wide activity feeds that prevent duplicate outreach. RecruiterFlow API integration keeps every system in sync.</p>
         <div class="product-features">
@@ -668,7 +777,7 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--dark-border
       </div>
 
       <div class="product-card">
-        <div class="product-header"><div class="product-icon">🧪</div></div>
+        <div class="product-header"><div class="product-icon"></div></div>
         <div class="product-name">AiUAT</div>
         <p class="product-desc">Autonomous user acceptance testing harness. AI generates test suites from product specs, synthetic user agents execute them against live staging environments, and regressions are surfaced before a human ever runs a manual scenario. Infrastructure intelligence plus synthetic user intelligence — the two engines that make QA keep pace with AI-assisted development.</p>
         <div class="product-features">
@@ -681,21 +790,7 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--dark-border
       </div>
 
       <div class="product-card">
-        <div class="product-header"><div class="product-icon">🏥</div></div>
-        <div class="product-name">ProVault</div>
-        <p class="product-desc">HIPAA-compliant healthcare credentialing platform. Verifies clinician licenses, certifications, and employment history once — then transmits authenticated credentials to facilities via encrypted, expiring, auditable links. No recipient accounts required. A proactive expiration engine prevents credential lapses before they become compliance events.</p>
-        <div class="product-features">
-          <span class="product-tag">HIPAA Compliant</span>
-          <span class="product-tag">Credential Verification</span>
-          <span class="product-tag">Expiring Links</span>
-          <span class="product-tag">FHIR R4</span>
-          <span class="product-tag">Audit Trail</span>
-          <span class="product-tag">Expiration Engine</span>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <div class="product-header"><div class="product-icon">📄</div></div>
+        <div class="product-header"><div class="product-icon"></div></div>
         <div class="product-name">aiResume</div>
         <p class="product-desc">Credential and portfolio sharing built the way modern hiring actually works. Candidates generate encrypted, expiring, revocable links to a single canonical profile — recruiters and hiring managers view résumé, portfolio, work samples, and verifications without creating an account. Every view is logged. Every link can be killed instantly.</p>
         <div class="product-features">
@@ -708,7 +803,7 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--dark-border
       </div>
 
       <div class="product-card">
-        <div class="product-header"><div class="product-icon">🎨</div></div>
+        <div class="product-header"><div class="product-icon"></div></div>
         <div class="product-name">aiWebDesign</div>
         <p class="product-desc">AI-assisted web design studio for small businesses and independent operators. Brief a project in plain language — the system produces brand palette, typography, layout, and a deployed single-page site backed by the same hardening, DNS automation, and CI/CD patterns that power the rest of the Cartesys portfolio. Production-grade sites in hours, not weeks.</p>
         <div class="product-features">
@@ -721,7 +816,7 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--dark-border
       </div>
 
       <div class="product-card">
-        <div class="product-header"><div class="product-icon">💬</div></div>
+        <div class="product-header"><div class="product-icon"></div></div>
         <div class="product-name">aiBeKind</div>
         <p class="product-desc">Communication intelligence that catches tone before it lands. Analyzes drafts across email, chat, and messaging for aggression, passive-aggression, and misalignment, then offers reframed alternatives that preserve intent while lowering heat. Built for leaders, parents, partners, and anyone who has ever regretted hitting send.</p>
         <div class="product-features">
@@ -778,9 +873,9 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--dark-border
     <div class="section-title">Build Once. Compound Forever.</div>
     <p class="section-desc">Every engagement makes the platform stronger. The next product launches faster than the last because it inherits everything the earlier products learned.</p>
     <div class="model-grid">
-      <div class="model-card"><div class="model-icon">🧱</div><h3>Platform Ownership</h3><p>Cartesys retains the shared platform — the toolchains, security patterns, AI orchestration, and autonomous operations that power every product. This is the compounding asset.</p></div>
-      <div class="model-card"><div class="model-icon">🔑</div><h3>Client Ownership</h3><p>Clients own their application code and infrastructure. Each product is fully separable — its own server, database, domain, and identity. Sell it or transfer it with no entanglement.</p></div>
-      <div class="model-card"><div class="model-icon">📈</div><h3>Compounding Value</h3><p>136+ capabilities and growing. Every engagement widens the moat. The methodology itself — not any single product — is the competitive advantage that compounds over time.</p></div>
+      <div class="model-card"><div class="model-icon"></div><h3>Platform Ownership</h3><p>Cartesys retains the shared platform — the toolchains, security patterns, AI orchestration, and autonomous operations that power every product. This is the compounding asset.</p></div>
+      <div class="model-card"><div class="model-icon"></div><h3>Client Ownership</h3><p>Clients own their application code and infrastructure. Each product is fully separable — its own server, database, domain, and identity. Sell it or transfer it with no entanglement.</p></div>
+      <div class="model-card"><div class="model-icon"></div><h3>Compounding Value</h3><p>136+ capabilities and growing. Every engagement widens the moat. The methodology itself — not any single product — is the competitive advantage that compounds over time.</p></div>
     </div>
   </div>
 </section>
@@ -881,6 +976,64 @@ document.querySelectorAll('.nav-links a').forEach(l => {
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.active').forEach(m => closeModal(m.id));
 });
+
+// Hero stat counter animation (respects prefers-reduced-motion)
+// Regex matches "LEADING_DIGITS + optional trailing non-digit suffix"
+// Works for "136+", "16", "6". For "$1.5K" or "1,200+" style values, update the regex.
+const animateCounter = (el, target, suffix, duration = 1800) => {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    el.textContent = target + suffix;
+    return;
+  }
+  const start = performance.now();
+  const tick = (now) => {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(target * eased) + suffix;
+    if (progress < 1) requestAnimationFrame(tick);
+    else el.textContent = target + suffix;
+  };
+  requestAnimationFrame(tick);
+};
+
+// Smooth fade-out then reset-to-0 before counter animation starts.
+// User sees: final value during fade-in → fade to 0 over 200ms → count up over 1800ms.
+const fadeToZeroThenCount = (el, target, suffix) => {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    el.textContent = target + suffix;
+    return;
+  }
+  el.style.transition = 'opacity 0.2s ease';
+  el.style.opacity = '0';
+  setTimeout(() => {
+    el.textContent = '0' + suffix;
+    el.style.opacity = '1';
+    setTimeout(() => animateCounter(el, target, suffix), 50);
+  }, 200);
+};
+
+// HERO_FADE_TOTAL_MS is when the counter trigger fires relative to page load.
+// Set to 550ms — counter fires slightly before stat tiles begin fading in,
+// so the reset-to-0 and count-up overlap earlier with the broader hero cascade.
+const HERO_FADE_TOTAL_MS = 550;
+const statObs = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    const text = (el.textContent || '').trim();
+    const match = text.match(/^(\d+)(\D*)$/);
+    if (!match) return;
+    const target = parseInt(match[1], 10);
+    const suffix = match[2] || '';
+    const elapsed = performance.now();
+    const delay = (elapsed < HERO_FADE_TOTAL_MS) ? (HERO_FADE_TOTAL_MS - elapsed) : 0;
+    setTimeout(() => fadeToZeroThenCount(el, target, suffix), delay);
+    observer.unobserve(el);
+  });
+}, { threshold: 0.6 });
+
+document.querySelectorAll('.hero-stat-num').forEach(el => statObs.observe(el));
 </script>
 
 </body>
