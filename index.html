@@ -955,10 +955,23 @@ footer { position: relative; z-index: 1; border-top: 1px solid var(--dark-border
 const nav = document.getElementById('mainNav');
 window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 50); });
 
+// Fade-up observer: threshold lowered from 0.1 to 0.01 so very tall elements
+// (like the 12-card products section on mobile) trigger as soon as any part
+// enters the viewport. Previously, the 10% threshold on a 4000px+ container
+// meant 400px had to be visible before firing — which never happened reliably
+// on iOS Chrome due to dynamic address-bar viewport changes.
 const obs = new IntersectionObserver(e => {
   e.forEach(x => { if (x.isIntersecting) x.target.classList.add('visible'); });
-}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+}, { threshold: 0.01, rootMargin: '0px 0px -50px 0px' });
 document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+// Failsafe: after 2 seconds, force any still-invisible .fade-up elements
+// visible. Catches edge cases where the observer doesn't fire (iOS viewport
+// quirks, tab-restore scroll position, disabled JS timing, etc.). Safe by
+// design — only ADDS the visible class, never removes it.
+setTimeout(() => {
+  document.querySelectorAll('.fade-up:not(.visible)').forEach(el => el.classList.add('visible'));
+}, 2000);
 
 function openModal(id) { document.getElementById(id).classList.add('active'); document.body.style.overflow = 'hidden'; }
 function closeModal(id) { document.getElementById(id).classList.remove('active'); document.body.style.overflow = ''; }
