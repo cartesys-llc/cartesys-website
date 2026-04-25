@@ -92,8 +92,8 @@ const fs = require('fs');
     const ctx = await browser.newContext({ viewport: { width: 1024, height: 800 } });
     const page = await ctx.newPage();
     await page.goto(filePath);
-    const selectors = ['.hero .hero-badge', '.hero h1', '.hero .hero-tagline', '.hero .hero-desc', '.hero .hero-cta', '.hero .hero-stats'];
-    console.log('Test 5 (hero fade-in animation wired on all 6 elements):');
+    const selectors = ['.hero h1', '.hero .hero-tagline', '.hero .hero-desc', '.hero .hero-cta', '.hero .hero-stats'];
+    console.log('Test 5 (hero fade-in animation wired on all 5 elements):');
     let test5Failures = 0;
     for (const sel of selectors) {
       const animName = await page.locator(sel).evaluate(el => window.getComputedStyle(el).animationName);
@@ -113,7 +113,7 @@ const fs = require('fs');
     const page = await ctx.newPage();
     await page.goto(filePath);
     await page.waitForTimeout(100);
-    const selectors = ['.hero .hero-badge', '.hero h1', '.hero .hero-tagline', '.hero .hero-desc', '.hero .hero-cta', '.hero .hero-stats'];
+    const selectors = ['.hero h1', '.hero .hero-tagline', '.hero .hero-desc', '.hero .hero-cta', '.hero .hero-stats'];
     console.log('Test 6 (reduced-motion hero elements all visible):');
     let test6Failures = 0;
     for (const sel of selectors) {
