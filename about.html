@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Cartesys</title>
+<meta name="description" content="The name Cartesys was inspired by René Descartes — Cartesius, modernized. I think, therefore I am. We think, therefore we build. Intelligence is only valuable when it becomes useful.">
+<meta property="og:title" content="About — Cartesys">
+<meta property="og:description" content="I think, therefore I am. We think, therefore we build.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://cartesys.ai/about">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0A0F;--bg-elev:#111118;--border:#1E1E2A;--border-bright:#2A2A3A;
+    --teal:#00D2B4;--blue:#3C64FF;--text:#F4F4F8;--muted:#8A8A9A;--muted-dim:#5A5A6A;
+    --grad:linear-gradient(135deg,#00D2B4,#3C64FF);--maxw:1160px;
+    --display:'Space Grotesk',sans-serif;--body:'DM Sans',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  svg{display:block}
+  ::selection{background:rgba(0,210,180,.25)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .eyebrow{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--teal);display:inline-flex;align-items:center;gap:10px}
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--teal);opacity:.7}
+  .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* nav */
+  header.nav{position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);background:rgba(10,10,15,.72);border-bottom:1px solid var(--border)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .brand{display:flex;align-items:center;gap:11px;font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:-.01em}
+  .brand .mark{width:26px;height:26px}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links a{font-size:14px;color:var(--muted);transition:color .2s}
+  .nav-links a:hover,.nav-links a.active{color:var(--text)}
+  .nav-cta{font-family:var(--mono);font-size:13px;color:var(--text)!important;border:1px solid var(--border-bright);padding:9px 16px;border-radius:8px;transition:border-color .2s,background .2s}
+  .nav-cta:hover{border-color:var(--teal);background:rgba(0,210,180,.06)}
+  .burger{display:none;background:none;border:0;cursor:pointer;padding:8px}
+  .burger span{display:block;width:22px;height:2px;background:var(--text);margin:4px 0;transition:.25s}
+
+  /* about hero */
+  .ahero{position:relative;overflow:hidden;text-align:center;padding:120px 0 70px}
+  .ahero-grid{position:absolute;inset:-2px;z-index:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:54px 54px;opacity:.45;-webkit-mask-image:radial-gradient(ellipse 70% 75% at 50% 30%,#000 30%,transparent 75%);mask-image:radial-gradient(ellipse 70% 75% at 50% 30%,#000 30%,transparent 75%);animation:drift 40s linear infinite}
+  @keyframes drift{to{background-position:54px 54px}}
+  .ahero-glow{position:absolute;z-index:0;width:640px;height:640px;left:50%;top:8%;transform:translateX(-50%);background:radial-gradient(circle,rgba(0,210,180,.13),rgba(60,100,255,.08) 40%,transparent 66%);filter:blur(36px);pointer-events:none}
+  .ahero .inner{position:relative;z-index:1}
+  .ahero .eyebrow{justify-content:center;margin-bottom:34px}
+  .cogito{font-family:var(--display);font-weight:700;letter-spacing:-.012em;line-height:1.08;font-size:clamp(34px,6vw,68px)}
+  .cogito .l2{display:block}
+
+  /* narrative */
+  .narrative{max-width:680px;margin:0 auto;padding:18px 0 0}
+  .narrative section{border:none;padding:0}
+  .lead{font-size:clamp(19px,2.3vw,24px);line-height:1.5;color:var(--text);text-align:center;margin:0 auto 60px;max-width:600px}
+  .narrative p{font-size:18px;line-height:1.75;color:var(--muted);margin:0 0 26px}
+  .narrative p strong{color:var(--text);font-weight:500}
+  .narrative em{font-style:normal;color:var(--teal)}
+
+  .divline{width:40px;height:1px;background:var(--border-bright);margin:54px auto}
+
+  /* etymology */
+  .ety{border:1px solid var(--border);border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.02),transparent);padding:40px 34px;text-align:center;margin:14px 0 40px}
+  .ety .flow{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;font-family:var(--display);font-weight:700;font-size:clamp(24px,4vw,38px);letter-spacing:-.01em}
+  .ety .flow .from{color:var(--muted-dim)}
+  .ety .flow .arr{color:var(--teal);font-size:.7em}
+  .ety .flow .sys{color:var(--teal)}
+  .ety .cap{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:18px}
+
+  /* belief pull-quote */
+  .belief{text-align:center;margin:46px auto;max-width:640px}
+  .belief .q{font-family:var(--display);font-weight:700;font-size:clamp(24px,3.6vw,36px);line-height:1.25;letter-spacing:-.01em}
+  .belief .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);margin-bottom:18px;display:block}
+
+  /* paired couplet blocks */
+  .couplet{border-left:2px solid;border-image:var(--grad) 1;padding:6px 0 6px 24px;margin:40px 0}
+  .couplet p{font-size:clamp(18px,2.1vw,22px);line-height:1.5;color:var(--text);margin:0 0 6px}
+  .couplet p:last-child{margin-bottom:0;color:var(--muted)}
+
+  /* closing */
+  .closing{text-align:center;margin:60px auto 0;max-width:660px}
+  .closing .big{font-family:var(--display);font-weight:700;font-size:clamp(26px,3.8vw,40px);line-height:1.18;letter-spacing:-.01em}
+
+  /* cta strip */
+  .acta{text-align:center;padding:90px 0 110px;border-top:1px solid var(--border);margin-top:90px;background:radial-gradient(ellipse 60% 90% at 50% 100%,rgba(0,210,180,.07),transparent 60%)}
+  .acta h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,4.4vw,48px);letter-spacing:-.01em;margin-bottom:24px}
+  .btn{font-family:var(--mono);font-size:14px;font-weight:600;padding:14px 26px;border-radius:10px;display:inline-flex;align-items:center;gap:9px;background:var(--grad);color:#04110f;transition:transform .2s,box-shadow .2s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px -10px rgba(0,210,180,.5)}
+
+  /* footer */
+  footer{border-top:1px solid var(--border);padding:46px 0}
+  .foot-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px}
+  .foot-inner .brand{font-size:17px}
+  .foot-links{display:flex;gap:24px;font-size:13px;color:var(--muted)}
+  .foot-links a:hover{color:var(--text)}
+  .copy{font-family:var(--mono);font-size:12px;color:var(--muted-dim);width:100%;border-top:1px solid var(--border);margin-top:30px;padding-top:24px}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:900px){
+    .nav-links{display:none}
+    .nav-links.show{display:flex;position:absolute;top:66px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--border);padding:8px 0}
+    .nav-links.show a{padding:14px 28px;width:100%}
+    .nav-links.show .nav-cta{margin:8px 28px;text-align:center}
+    .burger{display:block}
+  }
+  @media(prefers-reduced-motion:reduce){*{animation:none!important}.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="/" class="brand"><svg class="mark" viewBox="0 0 24 24" style="stroke:url(#g1);fill:none;stroke-width:1.6"><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00D2B4"/><stop offset="1" stop-color="#3C64FF"/></linearGradient></defs><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg>cartesys</a>
+    <nav class="nav-links" id="navlinks">
+      <a href="/#build">Capabilities</a>
+      <a href="/#products">Products</a>
+      <a href="/#platform">Platform</a>
+      <a href="/#security">Security</a>
+      <a href="/about" class="active">About</a>
+      <a href="/#contact" class="nav-cta">Get in touch</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ===== about hero ===== -->
+<section class="ahero">
+  <div class="ahero-grid"></div>
+  <div class="ahero-glow"></div>
+  <div class="wrap inner">
+    <span class="eyebrow">About Cartesys</span>
+    <div class="cogito">I think, therefore I am.<span class="l2 grad">We think, therefore we build.</span></div>
+  </div>
+</section>
+
+<!-- ===== narrative ===== -->
+<div class="wrap">
+  <div class="narrative">
+
+    <p class="lead">The name Cartesys was inspired by René Descartes, the philosopher best known for the statement, "I think, therefore I am."</p>
+
+    <p>For centuries, that idea has stood for something simple but powerful: thought is the proof of existence. Before action, before certainty, before creation, there is thought.</p>
+
+    <p><strong>Cartesys brings that idea into the age of artificial intelligence.</strong></p>
+
+    <div class="ety reveal">
+      <div class="flow"><span class="from">Cartesius</span><span class="arr">→</span><span>Carte<span class="sys">sys</span></span></div>
+      <div class="cap">The Latinized Descartes, modernized</div>
+    </div>
+
+    <p>We chose the name from Cartesius, the Latinized form of Descartes' name, and modernized it into Cartesys — a name that connects thought, intelligence, and systems. The <em>"sys"</em> is intentional. We build systems: AI systems, automation systems, decision systems, and operational infrastructure that help companies work with greater clarity and speed.</p>
+
+    <div class="belief reveal">
+      <span class="lbl">At its core, Cartesys is built around a belief</span>
+      <div class="q grad">Intelligence is only valuable when it becomes useful.</div>
+    </div>
+
+    <p>AI should not be noise. It should not be complexity for complexity's sake. It should help people think better, move faster, reduce waste, and make better decisions.</p>
+
+    <p><strong>That is what Cartesys exists to build.</strong></p>
+
+    <p>We help organizations turn ideas, data, workflows, and institutional knowledge into intelligent systems that can reason, retrieve, automate, and support better execution.</p>
+
+    <div class="couplet reveal">
+      <p>Descartes used thought as the foundation for certainty.</p>
+      <p>Cartesys uses intelligent systems as the foundation for better work.</p>
+    </div>
+
+    <p><strong>We are not building AI to replace human judgment. We are building AI to extend it.</strong></p>
+
+    <div class="divline"></div>
+
+    <div class="closing reveal">
+      <div class="big">Because the future will not belong to companies with the most tools.<br><span class="grad">It will belong to companies with the clearest thinking — and the systems to act on it.</span></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== cta ===== -->
+<section class="acta">
+  <div class="wrap">
+    <h2>Let's build something that thinks clearly.</h2>
+    <a href="/#contact" class="btn">Start a conversation →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-inner">
+      <a href="/" class="brand"><svg class="mark" viewBox="0 0 24 24" style="stroke:url(#g1);fill:none;stroke-width:1.6;width:22px;height:22px"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg>cartesys</a>
+      <div class="foot-links">
+        <a href="/about">About</a>
+        <a href="/#products">Products</a>
+        <a href="/#platform">Platform</a>
+        <a href="/#contact">Contact</a>
+      </div>
+    </div>
+    <div class="copy">© <span id="yr"></span> Cartesys LLC. All rights reserved. · Sanford, Florida</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  var burger=document.getElementById('burger'),links=document.getElementById('navlinks');
+  burger.addEventListener('click',function(){links.classList.toggle('show')});
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reveals=document.querySelectorAll('.reveal');
+  if(reduce){reveals.forEach(function(e){e.classList.add('in')});}
+  else{
+    var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:0.01,rootMargin:'0px 0px -8% 0px'});
+    reveals.forEach(function(e){io.observe(e)});
+    setTimeout(function(){reveals.forEach(function(e){e.classList.add('in')})},2000);
+  }
+</script>
+</body>
+</html>
