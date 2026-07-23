@@ -126,12 +126,6 @@
 
   /* ---------- products ---------- */
   .prod-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:18px;margin-bottom:46px}
-  .legend{display:flex;gap:18px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--muted);flex-wrap:wrap}
-  .legend span{display:inline-flex;align-items:center;gap:7px}
-  .dot{width:8px;height:8px;border-radius:50%}
-  .dot.live{background:var(--teal);box-shadow:0 0 0 4px rgba(0,210,180,.14)}
-  .dot.dev{background:var(--blue);box-shadow:0 0 0 4px rgba(60,100,255,.14)}
-  .dot.plan{background:var(--muted-dim)}
   .prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   .card{
     position:relative;background:var(--bg-elev);border:1px solid var(--border);border-radius:16px;
@@ -140,12 +134,6 @@
   .card:hover{transform:translateY(-4px);border-color:var(--border-bright);box-shadow:0 18px 40px -22px rgba(0,210,180,.45)}
   .card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px}
   .card .ic{width:42px;height:42px;border-radius:10px;border:1px solid var(--border-bright);display:flex;align-items:center;justify-content:center;background:rgba(0,210,180,.04)}
-  .badge{
-    font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
-    padding:5px 9px;border-radius:6px;border:1px solid var(--border-bright);color:var(--muted);white-space:nowrap;
-  }
-  .badge.live{color:var(--teal);border-color:rgba(0,210,180,.4);background:rgba(0,210,180,.07)}
-  .badge.dev{color:#9db0ff;border-color:rgba(60,100,255,.4);background:rgba(60,100,255,.07)}
   .card h3{font-size:19px;letter-spacing:-.01em}
   .card .tag-line{color:var(--teal);font-size:13.5px;font-weight:500;margin:5px 0 11px}
   .card p{color:var(--muted);font-size:14px;flex:1}
@@ -349,86 +337,81 @@
         <h2 class="sec-title">AI products for real problems</h2>
         <p class="sec-lede">Each one solves a distinct, real-world problem — and each one makes the next one faster to build.</p>
       </div>
-      <div class="legend reveal">
-        <span><i class="dot live"></i>Live</span>
-        <span><i class="dot dev"></i>In development</span>
-        <span><i class="dot plan"></i>Planned</span>
-      </div>
     </div>
     <div class="prod-grid">
 
       <div class="card reveal">
-        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-home"/></svg></div><span class="badge live">Live</span></div>
+        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-home"/></svg></div></div>
         <h3>aiGalileo</h3><div class="tag-line">The household's operating system.</div>
         <p>Ingests school emails, calendars, permission slips, and coach texts into one searchable intelligence layer, then sends morning and afternoon briefings to your phone.</p>
         <div class="tags"><span>Email Ingestion</span><span>OCR</span><span>Daily Briefings</span><span>Vector Search</span><span>iOS &amp; Android</span></div>
       </div>
 
       <div class="card reveal">
-        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-ship"/></svg></div><span class="badge live">Live</span></div>
+        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-ship"/></svg></div></div>
         <h3>aiCruiseDirector</h3><div class="tag-line">Your ship's onboard brain.</div>
         <p>RAG-powered chat trained on deck plans, menus, schedules, and pricing — plus photo-based menu reading, group coordination, and Face ID sign-in. $5 per sailing.</p>
         <div class="tags"><span>Ship RAG</span><span>AI Chat</span><span>Photo OCR</span><span>Group Travel</span><span>Stripe</span></div>
       </div>
 
       <div class="card reveal">
-        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-flag"/></svg></div><span class="badge live">Live</span></div>
+        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-flag"/></svg></div></div>
         <h3>aiProDriver</h3><div class="tag-line">Garmin optimizes laps. We optimize drivers.</div>
         <p>A calm British race-engineer voice delivers corner-level coaching from your telemetry, while a longitudinal driver model builds a fingerprint that evolves session over session.</p>
         <div class="tags"><span>Telemetry</span><span>Live Voice Engineer</span><span>Driver Modeling</span><span>Cross-Session Memory</span></div>
       </div>
 
       <div class="card reveal">
-        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-layers"/></svg></div><span class="badge dev">In development</span></div>
+        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-layers"/></svg></div></div>
         <h3>Cartesys Intelligence Layer</h3><div class="tag-line">AI orchestration on top of your system of record.</div>
         <p>Sits over Workday, Salesforce, NetSuite, Epic, or your own backend: deterministic detection finds the facts, AI writes the narrative, a validator confirms grounding, a human dispositions. AI never bypasses your audit trail — it accelerates it.</p>
         <div class="tags"><span>Deterministic Detection</span><span>Generator-Validator</span><span>Human Disposition</span><span>Audit-Native</span></div>
       </div>
 
       <div class="card reveal">
-        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-doc"/></svg></div><span class="badge dev">In development</span></div>
+        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-doc"/></svg></div></div>
         <h3>aiAuthorize</h3><div class="tag-line">The space between the quote and the commitment.</div>
         <p>Per-line-item estimate approval, structured change requests, immutable version history, and signed PDF export with cryptographic verification. Optional QuickBooks Online sync.</p>
         <div class="tags"><span>Line-Item Approval</span><span>Version History</span><span>Signed PDF</span><span>QBO Sync</span></div>
       </div>
 
       <div class="card reveal">
-        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-test"/></svg></div><span class="badge dev">In development</span></div>
+        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-test"/></svg></div></div>
         <h3>aiUAT</h3><div class="tag-line">QA that keeps pace with AI-assisted development.</div>
         <p>Generates test suites from product specs, runs synthetic user agents against live staging, and surfaces regressions before a human ever runs a manual scenario.</p>
         <div class="tags"><span>AI Test Generation</span><span>Synthetic Users</span><span>Regression Detection</span><span>CI/CD Hooks</span></div>
       </div>
 
       <div class="card reveal">
-        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-users"/></svg></div><span class="badge">Planned</span></div>
+        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-users"/></svg></div></div>
         <h3>aiPeopleOps</h3><div class="tag-line">People Operations for multi-brand, multi-state enterprises.</div>
         <p>Pre-payroll anomaly detection with human-in-the-loop approval, natural-language workforce queries, a legal-exposure dashboard, and a full AI decision audit log.</p>
         <div class="tags"><span>Anomaly Detection</span><span>HITL Approval</span><span>Workforce Intelligence</span><span>AI Audit Log</span></div>
       </div>
 
       <div class="card reveal">
-        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-search"/></svg></div><span class="badge">Planned</span></div>
+        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-search"/></svg></div></div>
         <h3>aiRecruiting</h3><div class="tag-line">Compress the sourcing-to-slate lifecycle.</div>
         <p>Candidate slate builder with 4-factor scoring, live interview transcription, time-stamped clip segmentation, and team activity feeds that prevent duplicate outreach.</p>
         <div class="tags"><span>Slate Builder</span><span>4-Factor Scoring</span><span>Transcription</span><span>ATS Integration</span></div>
       </div>
 
       <div class="card reveal">
-        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-badge"/></svg></div><span class="badge">Planned</span></div>
+        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-badge"/></svg></div></div>
         <h3>aiResume</h3><div class="tag-line">Credential sharing built the way hiring actually works.</div>
         <p>Encrypted, expiring, revocable links to one canonical profile — résumé, portfolio, verifications — viewable with no account. Every view logged, every link killable.</p>
         <div class="tags"><span>Expiring Tokens</span><span>Access Logs</span><span>Revocable Links</span><span>No-Account Viewing</span></div>
       </div>
 
       <div class="card reveal">
-        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-palette"/></svg></div><span class="badge">Planned</span></div>
+        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-palette"/></svg></div></div>
         <h3>aiWebDesign</h3><div class="tag-line">Production-grade sites in hours, not weeks.</div>
         <p>Brief a project in plain language; the system produces brand, type, layout, and a deployed single-page site on the same hardening and CI/CD that runs the rest of the portfolio.</p>
         <div class="tags"><span>Brief-to-Site</span><span>Brand Generation</span><span>Cloudflare Pages</span><span>One-Command Deploy</span></div>
       </div>
 
       <div class="card reveal">
-        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-heart"/></svg></div><span class="badge">Planned</span></div>
+        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-heart"/></svg></div></div>
         <h3>aiBeKind</h3><div class="tag-line">Catches tone before it lands.</div>
         <p>Analyzes drafts across email and chat for aggression and misalignment, then offers reframes that preserve intent while lowering the heat. For anyone who has regretted hitting send.</p>
         <div class="tags"><span>Tone Analysis</span><span>Reframe</span><span>De-escalation</span><span>Cross-Platform</span></div>
