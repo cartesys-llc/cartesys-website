@@ -95,12 +95,19 @@
   .seat.person{border-color:var(--teal)}
   .stem{width:2px;height:28px;background:linear-gradient(var(--teal),var(--blue))}
   .bus{height:2px;background:var(--grad);opacity:.6;margin:0 0 26px}
-  .depts{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  .depts{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;align-items:start}
   .dept{border:1px solid var(--border);border-radius:12px;background:var(--bg-elev);padding:16px 16px 14px;position:relative}
   .dept::before{content:"";position:absolute;left:50%;top:-27px;width:2px;height:26px;background:var(--border-bright)}
   .dept:nth-child(n+6)::before{display:none}
-  .dept h3{font-size:16px;margin-bottom:4px}
-  .dept .remit{color:var(--muted);font-size:13px;margin-bottom:10px}
+  .dept summary{list-style:none;cursor:pointer;display:block;position:relative;padding-left:22px;min-height:44px}
+  .dept summary::-webkit-details-marker{display:none}
+  .dept summary::before{content:"";position:absolute;left:2px;top:6px;border-style:solid;border-width:6px 0 6px 9px;border-color:transparent transparent transparent var(--teal);transition:transform .2s ease}
+  .dept[open] summary::before{transform:rotate(90deg)}
+  .dept summary:hover h3{color:var(--teal)}
+  .dept summary:focus-visible{outline:2px solid var(--teal);outline-offset:4px;border-radius:6px}
+  .dept h3{font-size:16px;margin-bottom:4px;transition:color .2s}
+  .dept .remit{color:var(--muted);font-size:13px;margin:0}
+  .dept[open] .remit{margin-bottom:10px}
   .dept ul{list-style:none;border-top:1px solid var(--border)}
   .dept li{font-size:13.5px;padding:7px 0;border-bottom:1px dashed var(--border);color:var(--text)}
   .dept li:last-child{border-bottom:0}
@@ -225,6 +232,12 @@
   @media(max-width:600px){
     .wrap{padding:0 16px}
     .cap-grid,.prod-grid,.plat-grid,.model-grid,.depts{grid-template-columns:1fr}
+    .depts{gap:8px}
+    .dept{padding:12px 14px}
+    .dept:not([open]) .remit{display:none}
+    .dept summary{min-height:44px;display:flex;flex-direction:column;justify-content:center}
+    .dept summary::before{top:50%;margin-top:-6px}
+    .dept[open] summary::before{top:16px;margin-top:0}
     .dept::before{display:none}
     .bus{display:none}
     section{padding:72px 0}
@@ -351,9 +364,8 @@
     <div class="bus"></div>
 
     <div class="depts">
-      <section class="dept" aria-label="Delivery Operations">
-        <h3>Delivery Operations</h3>
-        <p class="remit">Turns a written brief into merged, released work.</p>
+      <details class="dept">
+        <summary><h3>Delivery Operations</h3><p class="remit">Turns a written brief into merged, released work.</p></summary>
         <ul>
           <li>Head of Operations<small>Dispatches jobs in parallel and keeps them off each other&#x27;s files</small></li>
           <li>Brief author<small>Writes the full work order from a one-page brief</small></li>
@@ -365,10 +377,9 @@
           <li>Duty officer<small>Settles a job that needs a decision, from the written record</small></li>
           <li>Building manager<small>Restarts the engine on new code and after a reboot</small></li>
         </ul>
-      </section>
-      <section class="dept" aria-label="Platform Engineering">
-        <h3>Platform Engineering</h3>
-        <p class="remit">Stands up and hardens the infrastructure every product runs on.</p>
+      </details>
+      <details class="dept">
+        <summary><h3>Platform Engineering</h3><p class="remit">Stands up and hardens the infrastructure every product runs on.</p></summary>
         <ul>
           <li>Head of Infrastructure<small>Provisions a new product in two commands</small></li>
           <li>Systems engineers<small>Operate servers, DNS, containers and routing</small></li>
@@ -376,20 +387,18 @@
           <li>Mobile release team<small>Build and sign the mobile apps</small></li>
           <li>Secrets custodian<small>Delivers credentials at run time, never in code</small></li>
         </ul>
-      </section>
-      <section class="dept" aria-label="Site Reliability">
-        <h3>Site Reliability</h3>
-        <p class="remit">Keeps everything running and recovers it when it breaks.</p>
+      </details>
+      <details class="dept">
+        <summary><h3>Site Reliability</h3><p class="remit">Keeps everything running and recovers it when it breaks.</p></summary>
         <ul>
           <li>Operations centre<small>Hosts automation workflows and the health dashboard</small></li>
           <li>Monitors<small>Health reports, alarms and a daily summary</small></li>
           <li>Records clerk<small>Encrypted nightly backups</small></li>
           <li>Auditor<small>Scheduled dependency, certificate and clean-up jobs</small></li>
         </ul>
-      </section>
-      <section class="dept" aria-label="Quality Assurance">
-        <h3>Quality Assurance</h3>
-        <p class="remit">Proves work is right before and after it ships.</p>
+      </details>
+      <details class="dept">
+        <summary><h3>Quality Assurance</h3><p class="remit">Proves work is right before and after it ships.</p></summary>
         <ul>
           <li>Gatekeepers<small>Automated checks on every change</small></li>
           <li>Test standards<small>Every rule broken on purpose to prove its test can fail</small></li>
@@ -397,57 +406,52 @@
           <li>Acceptance testers<small>A robot user completes real flows end to end and is graded</small></li>
           <li>Visual inspection<small>Photographs every screen and fails on an error page</small></li>
         </ul>
-      </section>
-      <section class="dept" aria-label="Knowledge &amp; Standards">
-        <h3>Knowledge &amp; Standards</h3>
-        <p class="remit">Makes sure nothing is learned twice.</p>
+      </details>
+      <details class="dept">
+        <summary><h3>Knowledge &amp; Standards</h3><p class="remit">Makes sure nothing is learned twice.</p></summary>
         <ul>
           <li>Librarian<small>37,000+ records searched before new work</small></li>
           <li>Round memory<small>Each job reads what earlier jobs found and files its own</small></li>
           <li>Minute taker<small>Captures every building session into memory</small></li>
           <li>Methods office<small>The shared skill library and prompt standards</small></li>
         </ul>
-      </section>
-      <section class="dept" aria-label="Brand &amp; Experience">
-        <h3>Brand &amp; Experience</h3>
-        <p class="remit">Owns how everything looks, moves and reads.</p>
+      </details>
+      <details class="dept">
+        <summary><h3>Brand &amp; Experience</h3><p class="remit">Owns how everything looks, moves and reads.</p></summary>
         <ul>
           <li>Design canvas<small>Draws a screen before any build job is written</small></li>
           <li>Motion<small>Turns results into short branded films</small></li>
           <li>Standards<small>Type, spacing, colour and motion as sourced numbers</small></li>
           <li>Brand gate<small>Fails the build on anything outside the scale</small></li>
         </ul>
-      </section>
-      <section class="dept" aria-label="Communications">
-        <h3>Communications</h3>
-        <p class="remit">Carries messages in and out.</p>
+      </details>
+      <details class="dept">
+        <summary><h3>Communications</h3><p class="remit">Carries messages in and out.</p></summary>
         <ul>
           <li>Operations line<small>Sends decision requests to the founder&#x27;s phone</small></li>
           <li>Mail room<small>Transactional email for every product</small></li>
           <li>Liaison<small>Reads and writes where the business already works</small></li>
         </ul>
-      </section>
-      <section class="dept" aria-label="Security &amp; Compliance">
-        <h3>Security &amp; Compliance</h3>
-        <p class="remit">Keeps authority narrow and client material where it belongs.</p>
+      </details>
+      <details class="dept">
+        <summary><h3>Security &amp; Compliance</h3><p class="remit">Keeps authority narrow and client material where it belongs.</p></summary>
         <ul>
           <li>Access control<small>Chat can read state and stop a run, never start one</small></li>
           <li>API policy<small>Each account calls only the endpoints it is granted</small></li>
           <li>Read-only fences<small>The agents that judge work cannot change it</small></li>
           <li>Compliance<small>Fails the build if a shipped file names a client</small></li>
         </ul>
-      </section>
-      <section class="dept" aria-label="Commercial">
-        <h3>Commercial</h3>
-        <p class="remit">Money, customer relationships and the work that wins them.</p>
+      </details>
+      <details class="dept">
+        <summary><h3>Commercial</h3><p class="remit">Money, customer relationships and the work that wins them.</p></summary>
         <ul>
           <li>Billing<small>Products, prices and payments, tagged per product</small></li>
           <li>CRM<small>Customer records and client CRM access</small></li>
           <li>Surveys<small>Real surveys on their own site, answers held as data</small></li>
         </ul>
-      </section>
+      </details>
     </div>
-    <p class="org-note">The titles are ours. Each one names a real system with a defined job.</p>
+    <p class="org-note">Open a department to see its roles. The titles are ours; each one names a real system with a defined job.</p>
   </div>
 </section>
 
