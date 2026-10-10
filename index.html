@@ -6,7 +6,7 @@
 <title>Cartesys — An AI product studio that runs like a company</title>
 <meta name="description" content="Cartesys is an AI product studio run as an organization of software: AI agents that plan, build, test, release and learn, with one founder setting direction.">
 <meta property="og:title" content="Cartesys — An AI product studio that runs like a company">
-<meta property="og:description" content="One founder. Nine departments of AI agents. Products that build, ship and run themselves.">
+<meta property="og:description" content="One founder. Nine departments of AI agents. Products and services that build, ship and run themselves.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://cartesys.ai">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -125,7 +125,7 @@
   .cap h3{font-size:19px;margin-bottom:8px}
   .cap p{color:var(--muted);font-size:15px}
 
-  /* products (unchanged content) */
+  /* services (product-card design) */
   .prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
   .card{background:var(--bg-elev);border:1px solid var(--border);border-radius:14px;padding:24px 22px 22px;display:flex;flex-direction:column}
   .card-top{display:flex;margin-bottom:14px}
@@ -287,7 +287,7 @@
     <nav class="nav-links" id="navlinks">
       <a href="#organization">Organization</a>
       <a href="#delivery">How work ships</a>
-      <a href="#products">Products</a>
+      <a href="#services">Services</a>
       <a href="#platform">Platform</a>
       <a href="#security">Security</a>
       <a href="/about">About</a>
@@ -494,93 +494,69 @@
   </div>
 </section>
 
-<!-- products -->
-<section id="products">
+<!-- services -->
+<section id="services">
   <div class="wrap">
     <div class="sec-head">
-      <span class="kicker">Product portfolio</span>
-      <h2 class="sec-title">AI products for real problems</h2>
-      <p class="sec-lede">Each one solves a distinct, real-world problem, and each one makes the next one faster to build.</p>
+      <span class="kicker">Services</span>
+      <h2 class="sec-title">What we build for you</h2>
+      <p class="sec-lede">The same organization that builds and runs our own products, working on yours.</p>
     </div>
     <div class="prod-grid">
-
       <div class="card">
-        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-home"/></svg></div></div>
-        <h3>aiGalileo</h3><div class="tag-line">The household's operating system.</div>
-        <p>Ingests school emails, calendars, permission slips, and coach texts into one searchable intelligence layer, then sends morning and afternoon briefings to your phone.</p>
-        <div class="tags"><span>Email Ingestion</span><span>OCR</span><span>Daily Briefings</span><span>Vector Search</span><span>iOS &amp; Android</span></div>
+        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-cube"/></svg></div></div>
+        <h3>AI product development</h3><div class="tag-line">From idea to a product people use.</div>
+        <p>We take a concept to a shipped AI product: web, mobile and API, each on its own isolated infrastructure, built and released by the same delivery engine that runs our own portfolio.</p>
+        <div class="tags"><span>Web &amp; Mobile</span><span>AI Chat &amp; Search</span><span>App Store Release</span><span>Payments</span></div>
       </div>
-
       <div class="card">
-        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-ship"/></svg></div></div>
-        <h3>aiCruiseDirector</h3><div class="tag-line">Your ship's onboard brain.</div>
-        <p>RAG-powered chat trained on deck plans, menus, schedules, and pricing — plus photo-based menu reading, group coordination, and Face ID sign-in.</p>
-        <div class="tags"><span>Ship RAG</span><span>AI Chat</span><span>Photo OCR</span><span>Group Travel</span><span>Payments</span></div>
+        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-orch"/></svg></div></div>
+        <h3>Autonomous engineering</h3><div class="tag-line">An AI engineering team for your codebase.</div>
+        <p>Agents write, check, build, test, merge and release work in your repositories from a one-page brief. A person approves direction; the system handles the rest and asks when a decision is needed.</p>
+        <div class="tags"><span>Parallel Agents</span><span>Independent Review</span><span>Self-Merging</span><span>Decision Escalation</span></div>
       </div>
-
-      <div class="card">
-        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-flag"/></svg></div></div>
-        <h3>aiProDriver</h3><div class="tag-line">Garmin optimizes laps. We optimize drivers.</div>
-        <p>A calm British race-engineer voice delivers corner-level coaching from your telemetry, while a longitudinal driver model builds a fingerprint that evolves session over session.</p>
-        <div class="tags"><span>Telemetry</span><span>Live Voice Engineer</span><span>Driver Modeling</span><span>Cross-Session Memory</span></div>
-      </div>
-
       <div class="card">
         <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-layers"/></svg></div></div>
-        <h3>Cartesys Intelligence Layer</h3><div class="tag-line">AI orchestration on top of your system of record.</div>
-        <p>Sits over Workday, Salesforce, NetSuite, Epic, or your own backend: deterministic detection finds the facts, AI writes the narrative, a validator confirms grounding, a human dispositions. AI never bypasses your audit trail — it accelerates it.</p>
+        <h3>AI on your systems of record</h3><div class="tag-line">Intelligence on top of what you already run.</div>
+        <p>Sits over Workday, Salesforce, NetSuite, Epic, or your own backend: deterministic detection finds the facts, AI writes the narrative, a validator confirms grounding, a human dispositions. Your audit trail stays intact.</p>
         <div class="tags"><span>Deterministic Detection</span><span>Generator-Validator</span><span>Human Disposition</span><span>Audit-Native</span></div>
       </div>
-
       <div class="card">
-        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-doc"/></svg></div></div>
-        <h3>aiAuthorize</h3><div class="tag-line">The space between the quote and the commitment.</div>
-        <p>Per-line-item estimate approval, structured change requests, immutable version history, and signed PDF export with cryptographic verification. Optional QuickBooks Online sync.</p>
-        <div class="tags"><span>Line-Item Approval</span><span>Version History</span><span>Signed PDF</span><span>QBO Sync</span></div>
+        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-server"/></svg></div></div>
+        <h3>Infrastructure &amp; security</h3><div class="tag-line">Production-ready from the first deploy.</div>
+        <p>A full production stack — server, database, DNS, payments, backups and CI/CD — stood up from a hardened standard image, with six layers of server security and health monitoring from day one.</p>
+        <div class="tags"><span>Two-Command Provisioning</span><span>Six-Layer Hardening</span><span>Encrypted Backups</span><span>Health Monitoring</span></div>
       </div>
-
       <div class="card">
         <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-test"/></svg></div></div>
-        <h3>aiUAT</h3><div class="tag-line">QA that keeps pace with AI-assisted development.</div>
-        <p>Generates test suites from product specs, runs synthetic user agents against live staging, and surfaces regressions before a human ever runs a manual scenario.</p>
-        <div class="tags"><span>AI Test Generation</span><span>Synthetic Users</span><span>Regression Detection</span><span>CI/CD Hooks</span></div>
+        <h3>AI quality assurance</h3><div class="tag-line">QA that keeps pace with AI-assisted development.</div>
+        <p>Test suites generated from product specs, synthetic users run against live staging, graded end-to-end acceptance runs, and a photograph of every screen, so regressions surface before a person ever looks.</p>
+        <div class="tags"><span>AI Test Generation</span><span>Synthetic Users</span><span>Acceptance Testing</span><span>Visual Inspection</span></div>
       </div>
-
       <div class="card">
-        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-users"/></svg></div></div>
-        <h3>aiPeopleOps</h3><div class="tag-line">People Operations for multi-brand, multi-state enterprises.</div>
-        <p>Pre-payroll anomaly detection with human-in-the-loop approval, natural-language workforce queries, a legal-exposure dashboard, and a full AI decision audit log.</p>
-        <div class="tags"><span>Anomaly Detection</span><span>HITL Approval</span><span>Workforce Intelligence</span><span>AI Audit Log</span></div>
+        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-book"/></svg></div></div>
+        <h3>Knowledge systems</h3><div class="tag-line">Institutional memory your team can search.</div>
+        <p>Documents, decisions and past work turned into a searchable knowledge base that people and AI agents consult before acting, so nothing has to be learned twice.</p>
+        <div class="tags"><span>Semantic Search</span><span>Knowledge Capture</span><span>Decision Records</span><span>Retrieval</span></div>
       </div>
-
       <div class="card">
-        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-search"/></svg></div></div>
-        <h3>aiRecruiting</h3><div class="tag-line">Compress the sourcing-to-slate lifecycle.</div>
-        <p>Candidate slate builder with 4-factor scoring, live interview transcription, time-stamped clip segmentation, and team activity feeds that prevent duplicate outreach.</p>
-        <div class="tags"><span>Slate Builder</span><span>4-Factor Scoring</span><span>Transcription</span><span>ATS Integration</span></div>
+        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-refresh"/></svg></div></div>
+        <h3>Workflow automation</h3><div class="tag-line">Routine work that runs itself.</div>
+        <p>Email intake, notifications, scheduled jobs and multi-step workflows built on proven patterns, with human approval wherever it matters.</p>
+        <div class="tags"><span>Workflow Automation</span><span>Email Intake</span><span>Alerts</span><span>Human Approval</span></div>
       </div>
-
-      <div class="card">
-        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-badge"/></svg></div></div>
-        <h3>aiResume</h3><div class="tag-line">Credential sharing built the way hiring actually works.</div>
-        <p>Encrypted, expiring, revocable links to one canonical profile — résumé, portfolio, verifications — viewable with no account. Every view logged, every link killable.</p>
-        <div class="tags"><span>Expiring Tokens</span><span>Access Logs</span><span>Revocable Links</span><span>No-Account Viewing</span></div>
-      </div>
-
       <div class="card">
         <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-palette"/></svg></div></div>
-        <h3>aiWebDesign</h3><div class="tag-line">Production-grade sites in hours, not weeks.</div>
-        <p>Brief a project in plain language; the system produces brand, type, layout, and a deployed single-page site on the same hardening and CI/CD that runs the rest of the portfolio.</p>
-        <div class="tags"><span>Brief-to-Site</span><span>Brand Generation</span><span>Managed Hosting</span><span>One-Command Deploy</span></div>
+        <h3>Brand, design &amp; web</h3><div class="tag-line">Production-grade sites in hours, not weeks.</div>
+        <p>Screens drawn and chosen before they are built, a brand scale enforced by tests, sites deployed on the same hardening and CI/CD as everything else, and short branded films.</p>
+        <div class="tags"><span>Design Canvas</span><span>Brand Systems</span><span>Web Launch</span><span>Motion</span></div>
       </div>
-
       <div class="card">
-        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-heart"/></svg></div></div>
-        <h3>aiBeKind</h3><div class="tag-line">Catches tone before it lands.</div>
-        <p>Analyzes drafts across email and chat for aggression and misalignment, then offers reframes that preserve intent while lowering the heat. For anyone who has regretted hitting send.</p>
-        <div class="tags"><span>Tone Analysis</span><span>Reframe</span><span>De-escalation</span><span>Cross-Platform</span></div>
+        <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-users"/></svg></div></div>
+        <h3>People &amp; hiring intelligence</h3><div class="tag-line">Shaped by real HR operations experience.</div>
+        <p>Pre-payroll anomaly detection, natural-language workforce queries, candidate scoring and culture assessments, each with human approval and a full decision audit log.</p>
+        <div class="tags"><span>Anomaly Detection</span><span>Workforce Intelligence</span><span>Candidate Scoring</span><span>Culture Assessment</span></div>
       </div>
-
     </div>
   </div>
 </section>
@@ -679,7 +655,7 @@
       <div class="foot-links">
         <a href="/about">About</a>
         <a href="#organization">Organization</a>
-        <a href="#products">Products</a>
+        <a href="#services">Services</a>
         <a href="#platform">Platform</a>
         <a href="#" onclick="openModal('privacy');return false">Privacy</a>
         <a href="#" onclick="openModal('terms');return false">Terms</a>
