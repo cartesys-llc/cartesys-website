@@ -78,6 +78,7 @@
   .ledger-head{padding:18px 22px 14px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
   .ledger-head b{font-family:var(--display);font-size:16px;font-weight:600}
   .ledger-head span{font-family:var(--mono);font-size:12px;color:var(--muted-dim)}
+  .ledger-lead{padding:16px 22px;border-bottom:1px solid var(--border);font-size:15.5px;color:var(--text)}
   .ledger dl{display:grid;grid-template-columns:auto 1fr}
   .ledger dt,.ledger dd{padding:13px 22px;border-bottom:1px solid var(--border)}
   .ledger dt{font-family:var(--display);font-weight:700;font-size:26px;line-height:1.1;text-align:right;font-variant-numeric:tabular-nums;padding-right:6px}
@@ -313,9 +314,8 @@
     </div>
     <aside class="ledger" aria-label="Measured output">
       <div class="ledger-head"><b>Since our delivery engine went live</b><span>16 Sep – 10 Oct 2026</span></div>
+      <p class="ledger-lead">Finished work is merged and released by the system itself, after it passes review and tests.</p>
       <dl>
-        <dt>518</dt><dd>changes merged into production code</dd>
-        <dt>9 in 10</dt><dd>of those merged by the engine itself</dd>
         <dt>172</dt><dd>releases: 153 to live servers, 19 iOS test builds</dd>
         <dt>9</dt><dd>engineering jobs running side by side at peak</dd>
         <dt>9</dt><dd>codebases under active development</dd>
@@ -514,7 +514,7 @@
       <div class="card">
         <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-ship"/></svg></div></div>
         <h3>aiCruiseDirector</h3><div class="tag-line">Your ship's onboard brain.</div>
-        <p>RAG-powered chat trained on deck plans, menus, schedules, and pricing — plus photo-based menu reading, group coordination, and Face ID sign-in. $5 per sailing.</p>
+        <p>RAG-powered chat trained on deck plans, menus, schedules, and pricing — plus photo-based menu reading, group coordination, and Face ID sign-in.</p>
         <div class="tags"><span>Ship RAG</span><span>AI Chat</span><span>Photo OCR</span><span>Group Travel</span><span>Payments</span></div>
       </div>
 
@@ -655,7 +655,7 @@
       <div class="pillar"><div class="ic"><svg class="icon"><use href="#i-compound"/></svg></div><h3>Compounding value</h3><p>246 registered capabilities and growing. The methodology, not any single product, is the advantage that compounds.</p></div>
     </div>
     <div class="reuse-strip">
-      <div class="big grad">60–70%</div>
+      <div class="big grad">80%</div>
       <p>of every new product is already built before it starts, reused from components running in production. Headcount never scales with product count.</p>
     </div>
   </div>
@@ -685,7 +685,7 @@
         <a href="#" onclick="openModal('terms');return false">Terms</a>
       </div>
     </div>
-    <div class="copy">© <span id="yr">2026</span> Cartesys LLC. All rights reserved. Sanford, Florida.</div>
+    <div class="copy">© <span id="yr">2026</span> Cartesys LLC. All rights reserved. Lake Mary, Florida.</div>
   </div>
 </footer>
 
