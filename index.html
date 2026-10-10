@@ -3,196 +3,180 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cartesys — Autonomous Product Systems</title>
-<meta name="description" content="Cartesys is an AI product studio. We build self-operating systems that provision their own infrastructure, deploy their own code, and watch their own health. One compounding platform — 197 capabilities and growing.">
-<meta property="og:title" content="Cartesys — Autonomous Product Systems">
-<meta property="og:description" content="We build self-operating AI products on one compounding platform. Build it, run it, sell it.">
+<title>Cartesys — An AI product studio that runs like a company</title>
+<meta name="description" content="Cartesys is an AI product studio run as an organization of software: AI agents that plan, build, test, release and learn, with one founder setting direction.">
+<meta property="og:title" content="Cartesys — An AI product studio that runs like a company">
+<meta property="og:description" content="One founder. Nine departments of AI agents. Products that build, ship and run themselves.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://cartesys.ai">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0A0A0F;
-    --bg-elev:#111118;
-    --bg-elev-2:#15151E;
-    --border:#1E1E2A;
-    --border-bright:#2A2A3A;
-    --teal:#00D2B4;
-    --blue:#3C64FF;
-    --text:#F4F4F8;
-    --muted:#8A8A9A;
-    --muted-dim:#5A5A6A;
+    --bg:#0A0A0F; --bg-elev:#111118; --bg-elev-2:#15151E;
+    --border:#1E1E2A; --border-bright:#2A2A3A;
+    --teal:#00D2B4; --blue:#3C64FF; --text:#F4F4F8; --muted:#9A9AAA; --muted-dim:#6A6A7A;
     --grad:linear-gradient(135deg,#00D2B4,#3C64FF);
     --maxw:1160px;
-    --display:'Space Grotesk',sans-serif;
-    --body:'DM Sans',system-ui,sans-serif;
-    --mono:'JetBrains Mono',ui-monospace,monospace;
+    --display:'Space Grotesk',sans-serif; --body:'DM Sans',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{
-    background:var(--bg);color:var(--text);font-family:var(--body);
-    line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
-  }
+  body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   a{color:inherit;text-decoration:none}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
   svg{display:block}
   ::selection{background:rgba(0,210,180,.25)}
 
-  /* ---------- shared atoms ---------- */
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
-  .eyebrow{
-    font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.28em;
-    text-transform:uppercase;color:var(--teal);display:inline-flex;align-items:center;gap:10px;
-  }
-  .eyebrow::before{content:"";width:22px;height:1px;background:var(--teal);opacity:.7}
-  h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:-.01em;line-height:1.08}
-  .sec-title{font-size:clamp(30px,4.6vw,52px);margin:18px 0 14px}
-  .sec-lede{color:var(--muted);font-size:clamp(16px,1.7vw,19px);max-width:620px}
+  .kicker{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--teal)}
+  h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:-.015em;line-height:1.08}
+  .sec-title{font-size:clamp(30px,4.6vw,50px);margin:14px 0 14px;max-width:20ch}
+  .sec-lede{color:var(--muted);font-size:clamp(16px,1.7vw,19px);max-width:62ch}
   .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
   .icon{width:22px;height:22px;stroke:var(--teal);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
 
-  /* ---------- section frame ---------- */
   section{position:relative;padding:104px 0;border-top:1px solid var(--border)}
   section.hero{border-top:none;padding:0}
-  .sec-head{margin-bottom:54px}
+  section[id]{scroll-margin-top:66px}
+  .sec-head{margin-bottom:52px}
 
-  /* ---------- header ---------- */
-  header.nav{
-    position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);
-    background:rgba(10,10,15,.72);border-bottom:1px solid var(--border);
-  }
+  /* nav */
+  header.nav{position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);background:rgba(10,10,15,.76);border-bottom:1px solid var(--border)}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px}
   .brand{display:flex;align-items:center;gap:11px;font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:-.01em}
   .brand .mark{width:26px;height:26px}
-  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links{display:flex;gap:26px;align-items:center}
   .nav-links a{font-size:14px;color:var(--muted);transition:color .2s}
   .nav-links a:hover{color:var(--text)}
-  .nav-cta{
-    font-family:var(--mono);font-size:13px;color:var(--text)!important;border:1px solid var(--border-bright);
-    padding:9px 16px;border-radius:8px;transition:border-color .2s,background .2s;
-  }
+  .nav-cta{font-size:14px;color:var(--text)!important;border:1px solid var(--border-bright);padding:9px 16px;border-radius:8px;transition:border-color .2s,background .2s}
   .nav-cta:hover{border-color:var(--teal);background:rgba(0,210,180,.06)}
   .burger{display:none;background:none;border:0;cursor:pointer;padding:8px}
-  .burger span{display:block;width:22px;height:2px;background:var(--text);margin:4px 0;transition:.25s}
+  .burger span{display:block;width:22px;height:2px;background:var(--text);margin:4px 0}
 
-  /* ---------- hero ---------- */
-  .hero{min-height:92vh;display:flex;align-items:center;overflow:hidden}
-  .hero-grid{
-    position:absolute;inset:-2px;z-index:0;
+  /* hero */
+  .hero{overflow:hidden}
+  .hero-grid{position:absolute;inset:-2px;z-index:0;
     background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
-    background-size:54px 54px;opacity:.5;
-    -webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 38%,#000 35%,transparent 78%);
-    mask-image:radial-gradient(ellipse 80% 70% at 50% 38%,#000 35%,transparent 78%);
-    animation:drift 36s linear infinite;
-  }
-  @keyframes drift{to{background-position:54px 54px}}
-  .hero-glow{
-    position:absolute;z-index:0;width:760px;height:760px;left:50%;top:18%;transform:translateX(-50%);
-    background:radial-gradient(circle,rgba(0,210,180,.16),rgba(60,100,255,.10) 38%,transparent 66%);
-    filter:blur(34px);pointer-events:none;
-  }
-  .hero-inner{position:relative;z-index:1;padding:130px 0 110px;width:100%}
-  .hero h1{font-size:clamp(40px,7vw,82px);max-width:13ch;margin:24px 0}
-  .hero-sub{color:var(--muted);font-size:clamp(17px,2vw,21px);max-width:600px;margin-bottom:38px}
-  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-  .btn{
-    font-family:var(--mono);font-size:14px;font-weight:500;padding:14px 24px;border-radius:10px;
-    display:inline-flex;align-items:center;gap:9px;transition:transform .2s,box-shadow .2s;
-  }
-  .btn-primary{background:var(--grad);color:#04110f;font-weight:600}
+    background-size:54px 54px;opacity:.45;
+    -webkit-mask-image:radial-gradient(ellipse 80% 70% at 30% 35%,#000 30%,transparent 78%);mask-image:radial-gradient(ellipse 80% 70% at 30% 35%,#000 30%,transparent 78%)}
+  .hero-glow{position:absolute;z-index:0;width:720px;height:720px;left:62%;top:4%;transform:translateX(-50%);
+    background:radial-gradient(circle,rgba(0,210,180,.15),rgba(60,100,255,.10) 40%,transparent 66%);filter:blur(34px);pointer-events:none}
+  .hero-inner{position:relative;z-index:1;padding:118px 0 96px;display:grid;grid-template-columns:1.25fr 1fr;gap:56px;align-items:center}
+  .hero h1{font-size:clamp(40px,5.8vw,72px);margin:18px 0 24px;max-width:15ch}
+  .hero-sub{color:var(--muted);font-size:clamp(17px,1.9vw,20px);max-width:52ch;margin-bottom:36px}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{font-size:15px;font-weight:600;padding:14px 24px;border-radius:10px;display:inline-flex;align-items:center;transition:transform .2s,box-shadow .2s,border-color .2s}
+  .btn-primary{background:var(--grad);color:#04110f}
   .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px -10px rgba(0,210,180,.5)}
   .btn-ghost{border:1px solid var(--border-bright);color:var(--text)}
   .btn-ghost:hover{border-color:var(--teal)}
-  .statbar{
-    display:flex;flex-wrap:wrap;gap:14px;margin-top:64px;
-  }
-  .stat{
-    flex:1;min-width:150px;border:1px solid var(--border);border-radius:14px;
-    background:linear-gradient(180deg,rgba(255,255,255,.02),transparent);padding:22px 24px;
-  }
-  .stat .num{font-family:var(--display);font-weight:700;font-size:clamp(34px,4.5vw,46px);line-height:1}
-  .stat .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:10px}
-  .stat .sub{font-size:13px;color:var(--muted-dim);margin-top:3px}
 
-  /* ---------- capabilities (editorial grid) ---------- */
+  /* ledger: the hero's proof */
+  .ledger{border:1px solid var(--border-bright);border-radius:16px;background:rgba(17,17,24,.82);backdrop-filter:blur(6px);overflow:hidden}
+  .ledger-head{padding:18px 22px 14px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
+  .ledger-head b{font-family:var(--display);font-size:16px;font-weight:600}
+  .ledger-head span{font-family:var(--mono);font-size:12px;color:var(--muted-dim)}
+  .ledger dl{display:grid;grid-template-columns:auto 1fr}
+  .ledger dt,.ledger dd{padding:13px 22px;border-bottom:1px solid var(--border)}
+  .ledger dt{font-family:var(--display);font-weight:700;font-size:26px;line-height:1.1;text-align:right;font-variant-numeric:tabular-nums;padding-right:6px}
+  .ledger dd{color:var(--muted);font-size:14.5px;display:flex;align-items:center}
+  .ledger dl > :nth-last-child(-n+2){border-bottom:0}
+  .ledger-foot{padding:12px 22px;border-top:1px solid var(--border);font-size:12.5px;color:var(--muted-dim)}
+
+  /* organization chart: the signature element */
+  .org-top{display:flex;flex-direction:column;align-items:center}
+  .seat{border:1px solid var(--border-bright);border-radius:14px;background:var(--bg-elev);padding:18px 22px;width:min(520px,100%)}
+  .seat h3{font-size:19px}
+  .seat .who{color:var(--teal);font-size:14px;font-weight:600;margin:2px 0 6px}
+  .seat p{color:var(--muted);font-size:14.5px}
+  .seat.person{border-color:var(--teal)}
+  .stem{width:2px;height:28px;background:linear-gradient(var(--teal),var(--blue))}
+  .bus{height:2px;background:var(--grad);opacity:.6;margin:0 0 26px}
+  .depts{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  .dept{border:1px solid var(--border);border-radius:12px;background:var(--bg-elev);padding:16px 16px 14px;position:relative}
+  .dept::before{content:"";position:absolute;left:50%;top:-27px;width:2px;height:26px;background:var(--border-bright)}
+  .dept:nth-child(n+6)::before{display:none}
+  .dept h3{font-size:16px;margin-bottom:4px}
+  .dept .remit{color:var(--muted);font-size:13px;margin-bottom:10px}
+  .dept ul{list-style:none;border-top:1px solid var(--border)}
+  .dept li{font-size:13.5px;padding:7px 0;border-bottom:1px dashed var(--border);color:var(--text)}
+  .dept li:last-child{border-bottom:0}
+  .dept li small{display:block;color:var(--muted-dim);font-size:12.5px;line-height:1.4}
+  .org-note{color:var(--muted-dim);font-size:13.5px;margin-top:22px;max-width:80ch}
+
+  /* delivery line */
+  .line{list-style:none;display:grid;grid-template-columns:repeat(7,1fr);gap:0;border:1px solid var(--border);border-radius:16px;overflow:hidden;counter-reset:step}
+  .step{padding:22px 18px 24px;border-right:1px solid var(--border);background:var(--bg);counter-increment:step}
+  .step:last-child{border-right:0}
+  .step::before{content:counter(step);font-family:var(--display);font-weight:700;font-size:28px;color:var(--muted-dim);display:block;margin-bottom:12px}
+  .step h3{font-size:16.5px;margin-bottom:6px}
+  .step p{color:var(--muted);font-size:13.5px}
+  .duty{margin-top:22px;border:1px solid rgba(0,210,180,.28);border-radius:14px;padding:22px 26px;background:linear-gradient(120deg,rgba(0,210,180,.06),rgba(60,100,255,.04));display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center}
+  .duty p{color:var(--muted);font-size:15.5px;max-width:78ch}
+  .duty strong{color:var(--text);font-weight:600}
+
+  /* capabilities */
   .cap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:18px;overflow:hidden}
-  .cap{background:var(--bg);padding:34px 30px;transition:background .25s}
-  .cap:hover{background:var(--bg-elev)}
-  .cap .ic{width:46px;height:46px;border-radius:11px;border:1px solid var(--border-bright);display:flex;align-items:center;justify-content:center;margin-bottom:20px}
-  .cap h3{font-size:20px;letter-spacing:-.01em;margin-bottom:9px}
+  .cap{background:var(--bg);padding:32px 28px}
+  .cap .ic{width:44px;height:44px;border-radius:11px;border:1px solid var(--border-bright);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+  .cap h3{font-size:19px;margin-bottom:8px}
   .cap p{color:var(--muted);font-size:15px}
 
-  /* ---------- products ---------- */
-  .prod-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:18px;margin-bottom:46px}
-  .prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  .card{
-    position:relative;background:var(--bg-elev);border:1px solid var(--border);border-radius:16px;
-    padding:26px 24px 24px;display:flex;flex-direction:column;transition:transform .25s,border-color .25s,box-shadow .25s;
-  }
-  .card:hover{transform:translateY(-4px);border-color:var(--border-bright);box-shadow:0 18px 40px -22px rgba(0,210,180,.45)}
-  .card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px}
-  .card .ic{width:42px;height:42px;border-radius:10px;border:1px solid var(--border-bright);display:flex;align-items:center;justify-content:center;background:rgba(0,210,180,.04)}
-  .card h3{font-size:19px;letter-spacing:-.01em}
-  .card .tag-line{color:var(--teal);font-size:13.5px;font-weight:500;margin:5px 0 11px}
+  /* products (unchanged content) */
+  .prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .card{background:var(--bg-elev);border:1px solid var(--border);border-radius:14px;padding:24px 22px 22px;display:flex;flex-direction:column}
+  .card-top{display:flex;margin-bottom:14px}
+  .card .ic{width:40px;height:40px;border-radius:10px;border:1px solid var(--border-bright);display:flex;align-items:center;justify-content:center;background:rgba(0,210,180,.04)}
+  .card h3{font-size:19px}
+  .card .tag-line{color:var(--teal);font-size:13.5px;font-weight:500;margin:5px 0 10px}
   .card p{color:var(--muted);font-size:14px;flex:1}
-  .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
-  .tags span{font-family:var(--mono);font-size:10.5px;color:var(--muted);border:1px solid var(--border);border-radius:6px;padding:4px 8px}
+  .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+  .tags span{font-size:12px;color:var(--muted);border:1px solid var(--border);border-radius:6px;padding:3px 8px}
 
-  /* ---------- platform (catalog grid) ---------- */
-  .plat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  .mech{border:1px solid var(--border);border-radius:14px;padding:26px 24px;background:linear-gradient(180deg,rgba(255,255,255,.015),transparent);transition:border-color .25s}
-  .mech:hover{border-color:var(--border-bright)}
-  .mech .ref{font-family:var(--mono);font-size:11px;color:var(--teal);letter-spacing:.1em;margin-bottom:16px}
-  .mech h3{font-size:17.5px;letter-spacing:-.01em;margin-bottom:8px}
+  /* platform */
+  .plat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .mech{border:1px solid var(--border);border-radius:12px;padding:24px 22px}
+  .mech .fig{font-family:var(--display);font-weight:700;font-size:30px;line-height:1;margin-bottom:12px}
+  .mech h3{font-size:17px;margin-bottom:7px}
   .mech p{color:var(--muted);font-size:14px}
 
-  /* ---------- security (strata cross-section) ---------- */
+  /* security */
   .sec-security{background:radial-gradient(ellipse 70% 60% at 80% 0%,rgba(60,100,255,.07),transparent 60%)}
-  .strata{display:flex;flex-direction:column;gap:10px;margin-top:8px}
-  .layer{
-    display:grid;grid-template-columns:54px 1fr;align-items:center;gap:22px;
-    border:1px solid var(--border);border-radius:12px;background:var(--bg-elev);
-    padding:20px 24px;position:relative;overflow:hidden;transition:transform .25s,border-color .25s;
-  }
-  .layer::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--grad);opacity:.0;transition:opacity .25s}
-  .layer:hover{transform:translateX(6px);border-color:var(--border-bright)}
-  .layer:hover::before{opacity:1}
-  .layer .lvl{font-family:var(--display);font-weight:700;font-size:30px;color:var(--muted-dim)}
-  .layer .body h3{font-size:17px;margin-bottom:3px}
-  .layer .body p{color:var(--muted);font-size:14px}
+  .sec-cols{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+  .sec-cols h3.col-h{font-size:18px;margin-bottom:14px}
+  .strata{display:flex;flex-direction:column;gap:8px}
+  .layer{display:grid;grid-template-columns:44px 1fr;align-items:center;gap:16px;border:1px solid var(--border);border-radius:10px;background:var(--bg-elev);padding:15px 18px}
+  .layer .lvl{font-family:var(--display);font-weight:700;font-size:22px;color:var(--muted-dim)}
+  .layer h4{font-family:var(--display);font-size:15.5px;margin-bottom:2px}
+  .layer p{color:var(--muted);font-size:13.5px}
 
-  /* ---------- model ---------- */
-  .model-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px}
-  .pillar{border:1px solid var(--border);border-radius:16px;padding:32px 28px;background:var(--bg-elev)}
-  .pillar .ic{width:44px;height:44px;border-radius:11px;border:1px solid var(--border-bright);display:flex;align-items:center;justify-content:center;margin-bottom:20px}
-  .pillar h3{font-size:20px;margin-bottom:11px}
+  /* model */
+  .model-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .pillar{border:1px solid var(--border);border-radius:14px;padding:30px 26px;background:var(--bg-elev)}
+  .pillar .ic{width:42px;height:42px;border-radius:11px;border:1px solid var(--border-bright);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+  .pillar h3{font-size:19px;margin-bottom:10px}
   .pillar p{color:var(--muted);font-size:15px}
-  .reuse-strip{
-    margin-top:26px;border:1px solid rgba(0,210,180,.3);border-radius:16px;
-    background:linear-gradient(120deg,rgba(0,210,180,.07),rgba(60,100,255,.05));
-    padding:30px 34px;display:flex;align-items:center;gap:26px;flex-wrap:wrap;
-  }
-  .reuse-strip .big{font-family:var(--display);font-weight:700;font-size:clamp(40px,6vw,60px);line-height:1}
-  .reuse-strip p{color:var(--muted);font-size:16px;max-width:540px}
+  .reuse-strip{margin-top:22px;border:1px solid rgba(0,210,180,.3);border-radius:14px;background:linear-gradient(120deg,rgba(0,210,180,.07),rgba(60,100,255,.05));padding:28px 32px;display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+  .reuse-strip .big{font-family:var(--display);font-weight:700;font-size:clamp(40px,6vw,58px);line-height:1}
+  .reuse-strip p{color:var(--muted);font-size:16px;max-width:56ch}
 
-  /* ---------- contact ---------- */
+  /* contact */
   .sec-contact{text-align:center;background:radial-gradient(ellipse 60% 80% at 50% 100%,rgba(0,210,180,.08),transparent 60%)}
-  .sec-contact h2{font-size:clamp(34px,5.5vw,64px);margin:18px auto}
-  .sec-contact .sec-lede{margin:0 auto 36px}
-  .mail{font-family:var(--mono);font-size:clamp(16px,2.4vw,24px);color:var(--teal);border-bottom:1px solid rgba(0,210,180,.4);padding-bottom:4px;transition:border-color .2s}
+  .sec-contact h2{font-size:clamp(34px,5.5vw,62px);margin:14px auto 18px;max-width:16ch}
+  .sec-contact .sec-lede{margin:0 auto 34px}
+  .mail{font-family:var(--mono);font-size:clamp(16px,2.4vw,24px);color:var(--teal);border-bottom:1px solid rgba(0,210,180,.4);padding-bottom:4px}
   .mail:hover{border-color:var(--teal)}
 
-  /* ---------- footer ---------- */
   footer{border-top:1px solid var(--border);padding:46px 0}
   .foot-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px}
   .foot-inner .brand{font-size:17px}
-  .foot-links{display:flex;gap:24px;font-size:13px;color:var(--muted)}
+  .foot-links{display:flex;gap:22px;font-size:13.5px;color:var(--muted);flex-wrap:wrap}
   .foot-links a:hover{color:var(--text)}
-  .copy{font-family:var(--mono);font-size:12px;color:var(--muted-dim);width:100%;border-top:1px solid var(--border);margin-top:30px;padding-top:24px}
+  .copy{font-size:12.5px;color:var(--muted-dim);width:100%;border-top:1px solid var(--border);margin-top:28px;padding-top:22px}
 
-  /* ---------- legal modal ---------- */
+  /* legal modal */
   .modal{position:fixed;inset:0;z-index:100;display:none;align-items:flex-start;justify-content:center;padding:60px 20px;background:rgba(5,5,9,.78);backdrop-filter:blur(6px);overflow-y:auto}
   .modal.open{display:flex}
   .modal-box{background:var(--bg-elev);border:1px solid var(--border-bright);border-radius:18px;max-width:680px;width:100%;padding:40px}
@@ -203,35 +187,57 @@
   .modal-close{float:right;background:none;border:1px solid var(--border-bright);color:var(--muted);border-radius:8px;width:34px;height:34px;cursor:pointer;font-size:18px;line-height:1}
   .modal-close:hover{color:var(--text);border-color:var(--teal)}
 
-  /* ---------- reveal ---------- */
-  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
-  .reveal.in{opacity:1;transform:none}
+  /* one orchestrated moment: the org chart draws itself when it comes into view */
+  .js .org .stem,.js .org .bus{transform-origin:top;transform:scaleY(0);transition:transform .45s ease}
+  .js .org .bus{transform-origin:center;transform:scaleX(0)}
+  .js .org .dept{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
+  .js .org.drawn .stem{transform:none}
+  .js .org.drawn .bus{transform:none;transition-delay:.5s}
+  .js .org.drawn .dept{opacity:1;transform:none;transition-delay:calc(.8s + var(--i) * 70ms)}
 
-  /* ---------- responsive ---------- */
+  @media(max-width:1060px){
+    .depts{grid-template-columns:repeat(3,1fr)}
+    .dept:nth-child(n+4)::before{display:none}
+    .line{grid-template-columns:repeat(4,1fr)}
+    .step:nth-child(4){border-right:0}
+    .step:nth-child(-n+4){border-bottom:1px solid var(--border)}
+  }
   @media(max-width:900px){
+    .hero-inner{grid-template-columns:1fr;padding:96px 0 72px}
     .cap-grid,.prod-grid,.plat-grid,.model-grid{grid-template-columns:repeat(2,1fr)}
+    .sec-cols{grid-template-columns:1fr}
     .nav-links{display:none}
-    .nav-links.show{
-      display:flex;position:absolute;top:66px;left:0;right:0;flex-direction:column;gap:0;
-      background:var(--bg);border-bottom:1px solid var(--border);padding:8px 0;
-    }
+    .nav-links.show{display:flex;position:absolute;top:66px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--border);padding:8px 0}
     .nav-links.show a{padding:14px 28px;width:100%}
-    .nav-links.show .nav-cta{margin:8px 28px;text-align:center}
+    .nav-links.show .nav-cta{margin:8px 28px;width:auto;text-align:center}
     .burger{display:block}
   }
+  @media(max-width:720px){
+    .depts{grid-template-columns:1fr 1fr}
+    .dept:nth-child(n+3)::before{display:none}
+    .line{grid-template-columns:1fr}
+    .step{border-right:0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:40px 1fr;column-gap:12px}
+    .step::before{grid-row:span 2;margin:0;font-size:24px}
+    .step:last-child{border-bottom:0}
+    .duty{grid-template-columns:1fr}
+  }
   @media(max-width:600px){
-    .cap-grid,.prod-grid,.plat-grid,.model-grid{grid-template-columns:1fr}
-    section{padding:74px 0}
-    .layer{grid-template-columns:40px 1fr;gap:16px;padding:18px}
+    .wrap{padding:0 16px}
+    .cap-grid,.prod-grid,.plat-grid,.model-grid,.depts{grid-template-columns:1fr}
+    .dept::before{display:none}
+    .bus{display:none}
+    section{padding:72px 0}
+    .ledger dt{font-size:22px}
+    .ledger dt,.ledger dd{padding:11px 14px}
   }
   @media(prefers-reduced-motion:reduce){
-    *{animation:none!important}
-    .reveal{opacity:1;transform:none;transition:none}
     html{scroll-behavior:auto}
+    .js .org .stem,.js .org .bus,.js .org .dept{transform:none!important;opacity:1!important;transition:none!important}
   }
 </style>
 </head>
 <body>
+<script>document.documentElement.classList.add('js')</script>
 
 <!-- icon sprite -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -272,145 +278,304 @@
   </defs>
 </svg>
 
-<!-- ===== nav ===== -->
+
+
 <header class="nav">
   <div class="wrap nav-inner">
     <a href="#top" class="brand"><svg class="mark" viewBox="0 0 24 24" style="stroke:url(#g1);fill:none;stroke-width:1.6"><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00D2B4"/><stop offset="1" stop-color="#3C64FF"/></linearGradient></defs><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg>cartesys</a>
     <nav class="nav-links" id="navlinks">
-      <a href="#build">Capabilities</a>
+      <a href="#organization">Organization</a>
+      <a href="#delivery">How work ships</a>
       <a href="#products">Products</a>
       <a href="#platform">Platform</a>
       <a href="#security">Security</a>
-      <a href="#model">Model</a>
       <a href="/about">About</a>
       <a href="#contact" class="nav-cta">Get in touch</a>
     </nav>
-    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks"><span></span><span></span><span></span></button>
   </div>
 </header>
 
-<!-- ===== hero ===== -->
+<main>
+<!-- hero -->
 <section class="hero" id="top">
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
   <div class="wrap hero-inner">
-    <span class="eyebrow">Cartesys LLC · Autonomous Product Systems</span>
-    <h1>We build products that <span class="grad">run themselves.</span></h1>
-    <p class="hero-sub">Cartesys is an AI product studio. We design self-operating systems — they provision their own infrastructure, deploy their own code, watch their own health, and escalate to a human only when it matters.</p>
-    <div class="hero-actions">
-      <a href="#contact" class="btn btn-primary">Start a conversation <svg class="icon" style="stroke:#04110f;width:18px;height:18px"><use href="#i-arrow"/></svg></a>
-      <a href="#products" class="btn btn-ghost">See the portfolio</a>
+    <div>
+      <span class="kicker">Cartesys LLC — AI product studio</span>
+      <h1>One founder. A whole company of AI.</h1>
+      <p class="hero-sub">Cartesys runs like an organization of software. AI agents plan the work, write it, check it, build it, test it, release it and learn from it, across the products we run. A person sets direction and makes the calls that matter.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Start a conversation</a>
+        <a href="#organization" class="btn btn-ghost">Meet the organization</a>
+      </div>
     </div>
-    <div class="statbar">
-      <div class="stat"><div class="num" data-count="197">0</div><div class="lbl">Capabilities</div><div class="sub">searchable in the shared registry</div></div>
-      <div class="stat"><div class="num" data-count="25">0</div><div class="lbl">MCP Toolchains</div><div class="sub">available to every product, day one</div></div>
-      <div class="stat"><div class="num" data-count="6">0</div><div class="lbl">Security Layers</div><div class="sub">hardening every server pre-deploy</div></div>
+    <aside class="ledger" aria-label="Measured output">
+      <div class="ledger-head"><b>Since our delivery engine went live</b><span>16 Sep – 10 Oct 2026</span></div>
+      <dl>
+        <dt>518</dt><dd>changes merged into production code</dd>
+        <dt>9 in 10</dt><dd>of those merged by the engine itself</dd>
+        <dt>172</dt><dd>releases: 153 to live servers, 19 iOS test builds</dd>
+        <dt>9</dt><dd>engineering jobs running side by side at peak</dd>
+        <dt>9</dt><dd>codebases under active development</dd>
+      </dl>
+      <div class="ledger-foot">Counted from the engine's own delivery records.</div>
+    </aside>
+  </div>
+</section>
+
+<!-- organization -->
+<section id="organization" class="org">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">The organization</span>
+      <h2 class="sec-title">Drawn as a company, it looks like this</h2>
+      <p class="sec-lede">42 roles across nine departments, each held by an AI agent, an automation or a tool with a defined job. Every role reports to an AI chief of staff, and the chief of staff reports to the founder.</p>
+    </div>
+
+    <div class="org-top">
+      <div class="seat person">
+        <h3>Founder &amp; CEO</h3>
+        <div class="who">A person</div>
+        <p>Sets priorities. Makes the product, client, legal and security calls. Approves anything that spends money.</p>
+      </div>
+      <div class="stem"></div>
+      <div class="seat">
+        <h3>Chief of Staff &amp; Chief Architect</h3>
+        <div class="who">AI strategists, one per line of work</div>
+        <p>Investigates through live tools, writes the brief, reviews what comes back and keeps the decision record.</p>
+      </div>
+      <div class="stem"></div>
+    </div>
+    <div class="bus"></div>
+
+    <div class="depts">
+      <section class="dept" aria-label="Delivery Operations">
+        <h3>Delivery Operations</h3>
+        <p class="remit">Turns a written brief into merged, released work.</p>
+        <ul>
+          <li>Head of Operations<small>Dispatches jobs in parallel and keeps them off each other&#x27;s files</small></li>
+          <li>Brief author<small>Writes the full work order from a one-page brief</small></li>
+          <li>Prompt checker<small>Refuses a weak work order before it runs</small></li>
+          <li>Scheduler<small>Holds a job until the work it depends on has landed</small></li>
+          <li>Engineering staff<small>Build, test and open a pull request for each job</small></li>
+          <li>Merge desk<small>Merges one change at a time and keeps branches current</small></li>
+          <li>Release manager<small>Batches merges into releases and checks the live result</small></li>
+          <li>Duty officer<small>Settles a job that needs a decision, from the written record</small></li>
+          <li>Building manager<small>Restarts the engine on new code and after a reboot</small></li>
+        </ul>
+      </section>
+      <section class="dept" aria-label="Platform Engineering">
+        <h3>Platform Engineering</h3>
+        <p class="remit">Stands up and hardens the infrastructure every product runs on.</p>
+        <ul>
+          <li>Head of Infrastructure<small>Provisions a new product in two commands</small></li>
+          <li>Systems engineers<small>Operate servers, DNS, containers and routing</small></li>
+          <li>Standards<small>A golden server image and six-layer hardening</small></li>
+          <li>Mobile release team<small>Build and sign the mobile apps</small></li>
+          <li>Secrets custodian<small>Delivers credentials at run time, never in code</small></li>
+        </ul>
+      </section>
+      <section class="dept" aria-label="Site Reliability">
+        <h3>Site Reliability</h3>
+        <p class="remit">Keeps everything running and recovers it when it breaks.</p>
+        <ul>
+          <li>Operations centre<small>Hosts automation workflows and the health dashboard</small></li>
+          <li>Monitors<small>Health reports, alarms and a daily summary</small></li>
+          <li>Records clerk<small>Encrypted nightly backups</small></li>
+          <li>Auditor<small>Scheduled dependency, certificate and clean-up jobs</small></li>
+        </ul>
+      </section>
+      <section class="dept" aria-label="Quality Assurance">
+        <h3>Quality Assurance</h3>
+        <p class="remit">Proves work is right before and after it ships.</p>
+        <ul>
+          <li>Gatekeepers<small>Automated checks on every change</small></li>
+          <li>Test standards<small>Every rule broken on purpose to prove its test can fail</small></li>
+          <li>Independent reviewer<small>A fresh reviewer reads every work order and every result</small></li>
+          <li>Acceptance testers<small>A robot user completes real flows end to end and is graded</small></li>
+          <li>Visual inspection<small>Photographs every screen and fails on an error page</small></li>
+        </ul>
+      </section>
+      <section class="dept" aria-label="Knowledge &amp; Standards">
+        <h3>Knowledge &amp; Standards</h3>
+        <p class="remit">Makes sure nothing is learned twice.</p>
+        <ul>
+          <li>Librarian<small>37,000+ records searched before new work</small></li>
+          <li>Round memory<small>Each job reads what earlier jobs found and files its own</small></li>
+          <li>Minute taker<small>Captures every building session into memory</small></li>
+          <li>Registrar<small>A catalog of 246 reusable capabilities</small></li>
+          <li>Methods office<small>The shared skill library and prompt standards</small></li>
+        </ul>
+      </section>
+      <section class="dept" aria-label="Brand &amp; Experience">
+        <h3>Brand &amp; Experience</h3>
+        <p class="remit">Owns how everything looks, moves and reads.</p>
+        <ul>
+          <li>Design canvas<small>Draws a screen before any build job is written</small></li>
+          <li>Motion<small>Turns results into short branded films</small></li>
+          <li>Standards<small>Type, spacing, colour and motion as sourced numbers</small></li>
+          <li>Brand gate<small>Fails the build on anything outside the scale</small></li>
+        </ul>
+      </section>
+      <section class="dept" aria-label="Communications">
+        <h3>Communications</h3>
+        <p class="remit">Carries messages in and out.</p>
+        <ul>
+          <li>Operations line<small>Sends decision requests to the founder&#x27;s phone</small></li>
+          <li>Mail room<small>Transactional email for every product</small></li>
+          <li>Liaison<small>Reads and writes where the business already works</small></li>
+        </ul>
+      </section>
+      <section class="dept" aria-label="Security &amp; Compliance">
+        <h3>Security &amp; Compliance</h3>
+        <p class="remit">Keeps authority narrow and client material where it belongs.</p>
+        <ul>
+          <li>Access control<small>Chat can read state and stop a run, never start one</small></li>
+          <li>API policy<small>Each account calls only the endpoints it is granted</small></li>
+          <li>Read-only fences<small>The agents that judge work cannot change it</small></li>
+          <li>Compliance<small>Fails the build if a shipped file names a client</small></li>
+        </ul>
+      </section>
+      <section class="dept" aria-label="Commercial">
+        <h3>Commercial</h3>
+        <p class="remit">Money, customer relationships and the work that wins them.</p>
+        <ul>
+          <li>Billing<small>Products, prices and payments, tagged per product</small></li>
+          <li>CRM<small>Customer records and client CRM access</small></li>
+          <li>Surveys<small>Real surveys on their own site, answers held as data</small></li>
+        </ul>
+      </section>
+    </div>
+    <p class="org-note">The titles are ours. Each one names a real system with a defined job.</p>
+  </div>
+</section>
+
+<!-- delivery -->
+<section id="delivery">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">How work ships</span>
+      <h2 class="sec-title">From a one-page brief to live software</h2>
+      <p class="sec-lede">Every piece of work moves down the same line. Each stage is done by a different agent, and no agent grades its own work.</p>
+    </div>
+    <ol class="line">
+      <li class="step"><h3>Brief</h3><p>A person states the goal and the decisions that matter, on one page.</p></li>
+      <li class="step"><h3>Write</h3><p>An AI author turns the brief into a full work order, loaded with verified facts.</p></li>
+      <li class="step"><h3>Check</h3><p>A separate reviewer that has never seen the work reads it and refuses a weak order before it runs.</p></li>
+      <li class="step"><h3>Build</h3><p>Engineering agents work in parallel, held apart so no two touch the same files.</p></li>
+      <li class="step"><h3>Verify</h3><p>Automated tests on every change, tests proven able to fail, and a photograph of every screen.</p></li>
+      <li class="step"><h3>Release</h3><p>Merged one at a time, batched into a release, and checked against the live result before it counts as done.</p></li>
+      <li class="step"><h3>Learn</h3><p>Every job reads what earlier jobs found, and files what it learned for the next one.</p></li>
+    </ol>
+    <div class="duty">
+      <svg class="icon" style="width:30px;height:30px"><use href="#i-brain"/></svg>
+      <p><strong>When a job needs a decision, an AI duty officer answers it first.</strong> It reads the original brief and the written decision record, then writes the follow-up itself. A person is asked only when the answer genuinely isn't written down, and is notified on their phone the moment that happens.</p>
     </div>
   </div>
 </section>
 
-<!-- ===== capabilities ===== -->
+<!-- capabilities -->
 <section id="build">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">What we build</span>
+    <div class="sec-head">
+      <span class="kicker">What we build</span>
       <h2 class="sec-title">Self-operating product ecosystems</h2>
-      <p class="sec-lede">Complete product systems designed for autonomous operation, clean ownership transfer, and value that compounds with every build.</p>
+      <p class="sec-lede">Complete products designed to run themselves, transfer cleanly and make the next product faster to build.</p>
     </div>
-    <div class="cap-grid reveal">
-      <div class="cap"><div class="ic"><svg class="icon"><use href="#i-orch"/></svg></div><h3>AI-orchestrated operations</h3><p>Deployment, monitoring, error detection, and incident resolution handled by agents. Humans are escalated to — not required for — routine operations.</p></div>
-      <div class="cap"><div class="ic"><svg class="icon"><use href="#i-heal"/></svg></div><h3>Self-healing infrastructure</h3><p>Systems detect anomalies, diagnose root causes, propose fixes, and execute behind human-in-the-loop approval gates. Autonomous, never reckless.</p></div>
-      <div class="cap"><div class="ic"><svg class="icon"><use href="#i-server"/></svg></div><h3>One-command provisioning</h3><p>Stand up a full production stack — server, database, DNS, hardening, payments, CI/CD — in two commands. Twenty minutes, not two weeks.</p></div>
-      <div class="cap"><div class="ic"><svg class="icon"><use href="#i-carve"/></svg></div><h3>Clean carve-out design</h3><p>Every product is a standalone system with its own infrastructure, data, and identity. Build it, run it, sell it — zero entanglement.</p></div>
-      <div class="cap"><div class="ic"><svg class="icon"><use href="#i-parallel"/></svg></div><h3>Parallel AI workstreams</h3><p>Multiple agents work at once across different layers of the same product. Contract-first coordination keeps them in sync. Days, not weeks.</p></div>
-      <div class="cap"><div class="ic"><svg class="icon"><use href="#i-compound"/></svg></div><h3>Compounding platform</h3><p>Every product makes the next one faster. 60–70% of each new build reuses components already running in production.</p></div>
+    <div class="cap-grid">
+      <div class="cap"><div class="ic"><svg class="icon"><use href="#i-orch"/></svg></div><h3>Autonomous delivery</h3><p>Work is written, checked, built, merged and released by agents, with a person deciding direction rather than carrying text between tools.</p></div>
+      <div class="cap"><div class="ic"><svg class="icon"><use href="#i-heal"/></svg></div><h3>Watched around the clock</h3><p>Every product server reports its health every five minutes, with alarms and a daily summary, and anything that needs a person arrives with the evidence attached.</p></div>
+      <div class="cap"><div class="ic"><svg class="icon"><use href="#i-server"/></svg></div><h3>Two-command provisioning</h3><p>A full production stack — server, database, DNS, hardening, payments, backups, CI/CD — stood up from a standard image in minutes.</p></div>
+      <div class="cap"><div class="ic"><svg class="icon"><use href="#i-carve"/></svg></div><h3>Clean carve-out design</h3><p>Every product has its own infrastructure, data and identity. Build it, run it, sell it, with nothing tangled behind it.</p></div>
+      <div class="cap"><div class="ic"><svg class="icon"><use href="#i-palette"/></svg></div><h3>Design, motion and documents</h3><p>Screens drawn and chosen before they are built, a brand scale enforced by tests on every change, and short branded films that turn results into something people watch.</p></div>
+      <div class="cap"><div class="ic"><svg class="icon"><use href="#i-compound"/></svg></div><h3>A platform that compounds</h3><p>Every product adds patterns, tools and lessons to a shared platform, so each new build starts further along than the last.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ===== products ===== -->
+<!-- products -->
 <section id="products">
   <div class="wrap">
-    <div class="prod-head">
-      <div class="sec-head reveal" style="margin-bottom:0">
-        <span class="eyebrow">Product portfolio</span>
-        <h2 class="sec-title">AI products for real problems</h2>
-        <p class="sec-lede">Each one solves a distinct, real-world problem — and each one makes the next one faster to build.</p>
-      </div>
+    <div class="sec-head">
+      <span class="kicker">Product portfolio</span>
+      <h2 class="sec-title">AI products for real problems</h2>
+      <p class="sec-lede">Each one solves a distinct, real-world problem, and each one makes the next one faster to build.</p>
     </div>
     <div class="prod-grid">
 
-      <div class="card reveal">
+      <div class="card">
         <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-home"/></svg></div></div>
         <h3>aiGalileo</h3><div class="tag-line">The household's operating system.</div>
         <p>Ingests school emails, calendars, permission slips, and coach texts into one searchable intelligence layer, then sends morning and afternoon briefings to your phone.</p>
         <div class="tags"><span>Email Ingestion</span><span>OCR</span><span>Daily Briefings</span><span>Vector Search</span><span>iOS &amp; Android</span></div>
       </div>
 
-      <div class="card reveal">
+      <div class="card">
         <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-ship"/></svg></div></div>
         <h3>aiCruiseDirector</h3><div class="tag-line">Your ship's onboard brain.</div>
         <p>RAG-powered chat trained on deck plans, menus, schedules, and pricing — plus photo-based menu reading, group coordination, and Face ID sign-in. $5 per sailing.</p>
-        <div class="tags"><span>Ship RAG</span><span>AI Chat</span><span>Photo OCR</span><span>Group Travel</span><span>Stripe</span></div>
+        <div class="tags"><span>Ship RAG</span><span>AI Chat</span><span>Photo OCR</span><span>Group Travel</span><span>Payments</span></div>
       </div>
 
-      <div class="card reveal">
+      <div class="card">
         <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-flag"/></svg></div></div>
         <h3>aiProDriver</h3><div class="tag-line">Garmin optimizes laps. We optimize drivers.</div>
         <p>A calm British race-engineer voice delivers corner-level coaching from your telemetry, while a longitudinal driver model builds a fingerprint that evolves session over session.</p>
         <div class="tags"><span>Telemetry</span><span>Live Voice Engineer</span><span>Driver Modeling</span><span>Cross-Session Memory</span></div>
       </div>
 
-      <div class="card reveal">
+      <div class="card">
         <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-layers"/></svg></div></div>
         <h3>Cartesys Intelligence Layer</h3><div class="tag-line">AI orchestration on top of your system of record.</div>
         <p>Sits over Workday, Salesforce, NetSuite, Epic, or your own backend: deterministic detection finds the facts, AI writes the narrative, a validator confirms grounding, a human dispositions. AI never bypasses your audit trail — it accelerates it.</p>
         <div class="tags"><span>Deterministic Detection</span><span>Generator-Validator</span><span>Human Disposition</span><span>Audit-Native</span></div>
       </div>
 
-      <div class="card reveal">
+      <div class="card">
         <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-doc"/></svg></div></div>
         <h3>aiAuthorize</h3><div class="tag-line">The space between the quote and the commitment.</div>
         <p>Per-line-item estimate approval, structured change requests, immutable version history, and signed PDF export with cryptographic verification. Optional QuickBooks Online sync.</p>
         <div class="tags"><span>Line-Item Approval</span><span>Version History</span><span>Signed PDF</span><span>QBO Sync</span></div>
       </div>
 
-      <div class="card reveal">
+      <div class="card">
         <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-test"/></svg></div></div>
         <h3>aiUAT</h3><div class="tag-line">QA that keeps pace with AI-assisted development.</div>
         <p>Generates test suites from product specs, runs synthetic user agents against live staging, and surfaces regressions before a human ever runs a manual scenario.</p>
         <div class="tags"><span>AI Test Generation</span><span>Synthetic Users</span><span>Regression Detection</span><span>CI/CD Hooks</span></div>
       </div>
 
-      <div class="card reveal">
+      <div class="card">
         <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-users"/></svg></div></div>
         <h3>aiPeopleOps</h3><div class="tag-line">People Operations for multi-brand, multi-state enterprises.</div>
         <p>Pre-payroll anomaly detection with human-in-the-loop approval, natural-language workforce queries, a legal-exposure dashboard, and a full AI decision audit log.</p>
         <div class="tags"><span>Anomaly Detection</span><span>HITL Approval</span><span>Workforce Intelligence</span><span>AI Audit Log</span></div>
       </div>
 
-      <div class="card reveal">
+      <div class="card">
         <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-search"/></svg></div></div>
         <h3>aiRecruiting</h3><div class="tag-line">Compress the sourcing-to-slate lifecycle.</div>
         <p>Candidate slate builder with 4-factor scoring, live interview transcription, time-stamped clip segmentation, and team activity feeds that prevent duplicate outreach.</p>
         <div class="tags"><span>Slate Builder</span><span>4-Factor Scoring</span><span>Transcription</span><span>ATS Integration</span></div>
       </div>
 
-      <div class="card reveal">
+      <div class="card">
         <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-badge"/></svg></div></div>
         <h3>aiResume</h3><div class="tag-line">Credential sharing built the way hiring actually works.</div>
         <p>Encrypted, expiring, revocable links to one canonical profile — résumé, portfolio, verifications — viewable with no account. Every view logged, every link killable.</p>
         <div class="tags"><span>Expiring Tokens</span><span>Access Logs</span><span>Revocable Links</span><span>No-Account Viewing</span></div>
       </div>
 
-      <div class="card reveal">
+      <div class="card">
         <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-palette"/></svg></div></div>
         <h3>aiWebDesign</h3><div class="tag-line">Production-grade sites in hours, not weeks.</div>
         <p>Brief a project in plain language; the system produces brand, type, layout, and a deployed single-page site on the same hardening and CI/CD that runs the rest of the portfolio.</p>
-        <div class="tags"><span>Brief-to-Site</span><span>Brand Generation</span><span>Cloudflare Pages</span><span>One-Command Deploy</span></div>
+        <div class="tags"><span>Brief-to-Site</span><span>Brand Generation</span><span>Managed Hosting</span><span>One-Command Deploy</span></div>
       </div>
 
-      <div class="card reveal">
+      <div class="card">
         <div class="card-top"><div class="ic"><svg class="icon"><use href="#i-heart"/></svg></div></div>
         <h3>aiBeKind</h3><div class="tag-line">Catches tone before it lands.</div>
         <p>Analyzes drafts across email and chat for aggression and misalignment, then offers reframes that preserve intent while lowering the heat. For anyone who has regretted hitting send.</p>
@@ -421,91 +586,107 @@
   </div>
 </section>
 
-<!-- ===== platform ===== -->
+<!-- platform -->
 <section id="platform">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">The platform</span>
+    <div class="sec-head">
+      <span class="kicker">The platform</span>
       <h2 class="sec-title">Structured autonomy</h2>
-      <p class="sec-lede">AI agents are powerful — but without structure they create chaos. The platform turns AI into a reliable operations partner.</p>
+      <p class="sec-lede">Agents are powerful, but without structure they create chaos. The platform is the structure: shared memory, shared tools, shared rules.</p>
     </div>
     <div class="plat-grid">
-      <div class="mech reveal"><div class="ref">REGISTRY</div><h3>Capability registry</h3><p>A searchable catalog of every tool, pattern, and integration across all products. 197 entries today. Search before you build, reuse before you create.</p></div>
-      <div class="mech reveal"><div class="ref">ORCHESTRATION</div><h3>Agent orchestration</h3><p>Agents handle deployment, workflow management, security scanning, and incident response — with progress tracking, budget controls, and automatic recovery.</p></div>
-      <div class="mech reveal"><div class="ref">MEMORY</div><h3>Institutional memory</h3><p>A semantic knowledge base capturing every pattern, decision, and lesson learned. Agents query it before every task. Nothing is ever lost.</p></div>
-      <div class="mech reveal"><div class="ref">CONTRACT</div><h3>Contract-first coordination</h3><p>When agents touch connected systems, upstream publishes a machine-readable contract before downstream begins. The #1 cause of integration bugs, eliminated by design.</p></div>
-      <div class="mech reveal"><div class="ref">GATES</div><h3>Human-in-the-loop gates</h3><p>Autonomous execution with safety checkpoints. AI proposes, humans approve what matters. Escalation, not permission.</p></div>
-      <div class="mech reveal"><div class="ref">CROSS-POLLINATION</div><h3>Cross-pollination</h3><p>Products are independent in deployment but connected in learning. Every pattern discovered on one product improves all the others.</p></div>
-      <div class="mech reveal"><div class="ref">QUALITY</div><h3>Automated quality gates</h3><p>Every task runs through discovery, backup, implementation, self-test, and verification. Earned confidence, not blind trust.</p></div>
-      <div class="mech reveal"><div class="ref">RECOVERY</div><h3>Disaster recovery by default</h3><p>Encrypted nightly backups to S3, state snapshots, automated health monitoring, and recovery runbooks ship with every product — a launch requirement, not an afterthought.</p></div>
-      <div class="mech reveal"><div class="ref">DOCS</div><h3>Living documentation</h3><p>Instructions built on principles and dynamic pointers, not static facts. Every session starts informed; every lesson feeds back in.</p></div>
+      <div class="mech"><div class="fig grad">246</div><h3>Capability registry</h3><p>A searchable catalog of every tool, pattern, workflow and lesson across all products. Search before you build; reuse before you create.</p></div>
+      <div class="mech"><div class="fig grad">37,000+</div><h3>Institutional memory</h3><p>Records of past sessions, decisions and lessons, searched by meaning before new work starts. Nothing has to be learned twice.</p></div>
+      <div class="mech"><div class="fig grad">27</div><h3>Integrated toolchains</h3><p>Cloud, containers, databases, source control, payments, email, mobile stores, CI/CD and more, available to every product from day one.</p></div>
+      <div class="mech"><h3>Contract-first coordination</h3><p>When work spans layers, the upstream layer publishes a machine-readable contract before the downstream layer begins. Mismatches are designed out.</p></div>
+      <div class="mech"><h3>Independent review</h3><p>The agent that checks the work is never the one that did it. Verification uses different tools than the build did.</p></div>
+      <div class="mech"><h3>Tests that can fail</h3><p>Every rule is broken on purpose to prove its test catches it. A test that cannot fail is not counted as evidence.</p></div>
+      <div class="mech"><h3>Written stop policy</h3><p>What agents may do alone, what they do and report, and what waits for a person, decided in advance. Anything unlisted waits.</p></div>
+      <div class="mech"><h3>Cross-pollination</h3><p>Products are independent in deployment and connected in learning. A lesson on one product improves all the others.</p></div>
+      <div class="mech"><h3>Disaster recovery by default</h3><p>Encrypted nightly backups and health monitoring ship with every product as a launch requirement, not an afterthought.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ===== security ===== -->
+<!-- security -->
 <section id="security" class="sec-security">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Security &amp; compliance</span>
+    <div class="sec-head">
+      <span class="kicker">Security &amp; compliance</span>
       <h2 class="sec-title">Enterprise-grade from day one</h2>
-      <p class="sec-lede">Not a roadmap item — the current reality. Every production server runs the 6-layer hardening standard before a single line of application code deploys.</p>
+      <p class="sec-lede">Every production server is hardened before application code deploys, and every agent works with the narrowest authority its job needs.</p>
     </div>
-    <div class="strata">
-      <div class="layer reveal"><div class="lvl">01</div><div class="body"><h3>Network firewall</h3><p>Cloud security groups restrict traffic to essential ports only.</p></div></div>
-      <div class="layer reveal"><div class="lvl">02</div><div class="body"><h3>Host firewall</h3><p>Defense-in-depth with an independent second firewall layer.</p></div></div>
-      <div class="layer reveal"><div class="lvl">03</div><div class="body"><h3>Key-only authentication</h3><p>Password login disabled. Cryptographic key pairs only.</p></div></div>
-      <div class="layer reveal"><div class="lvl">04</div><div class="body"><h3>Intrusion prevention</h3><p>Automatic banning on repeated failed access attempts.</p></div></div>
-      <div class="layer reveal"><div class="lvl">05</div><div class="body"><h3>Automatic patching</h3><p>Security updates applied automatically, no human intervention.</p></div></div>
-      <div class="layer reveal"><div class="lvl">06</div><div class="body"><h3>Encrypted backups</h3><p>GPG encryption before data ever leaves the server.</p></div></div>
+    <div class="sec-cols">
+      <div>
+        <h3 class="col-h">Six layers on every server</h3>
+        <div class="strata">
+          <div class="layer"><div class="lvl">1</div><div><h4>Network firewall</h4><p>Cloud security groups restrict traffic to essential ports only.</p></div></div>
+          <div class="layer"><div class="lvl">2</div><div><h4>Host firewall</h4><p>An independent second firewall for defense in depth.</p></div></div>
+          <div class="layer"><div class="lvl">3</div><div><h4>Key-only authentication</h4><p>Password login disabled. Cryptographic key pairs only.</p></div></div>
+          <div class="layer"><div class="lvl">4</div><div><h4>Intrusion prevention</h4><p>Automatic banning after repeated failed access attempts.</p></div></div>
+          <div class="layer"><div class="lvl">5</div><div><h4>Automatic patching</h4><p>Security updates applied without human intervention.</p></div></div>
+          <div class="layer"><div class="lvl">6</div><div><h4>Encrypted backups</h4><p>Encrypted before data ever leaves the server.</p></div></div>
+        </div>
+      </div>
+      <div>
+        <h3 class="col-h">Narrow authority for every agent</h3>
+        <div class="strata">
+          <div class="layer"><div class="lvl"><svg class="icon"><use href="#i-key"/></svg></div><div><h4>Secrets delivered at run time</h4><p>Credentials stay out of code and are handed to services only when they start.</p></div></div>
+          <div class="layer"><div class="lvl"><svg class="icon"><use href="#i-lock"/></svg></div><div><h4>Allowlisted commands and APIs</h4><p>Each agent and account may run only the commands and call only the endpoints it is granted.</p></div></div>
+          <div class="layer"><div class="lvl"><svg class="icon"><use href="#i-ban"/></svg></div><div><h4>Read-only reviewers</h4><p>The agents that read and judge work cannot change it.</p></div></div>
+          <div class="layer"><div class="lvl"><svg class="icon"><use href="#i-shieldcheck"/></svg></div><div><h4>Client confidentiality, tested</h4><p>The build fails if anything shipped names a client, and client material stays out of shared memory.</p></div></div>
+          <div class="layer"><div class="lvl"><svg class="icon"><use href="#i-cube"/></svg></div><div><h4>Isolated products</h4><p>Separate servers, databases and keys for every product.</p></div></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ===== model ===== -->
+<!-- model -->
 <section id="model">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Business model</span>
+    <div class="sec-head">
+      <span class="kicker">Business model</span>
       <h2 class="sec-title">Build once. Compound forever.</h2>
       <p class="sec-lede">Every engagement makes the platform stronger. The next product launches faster than the last because it inherits everything the earlier ones learned.</p>
     </div>
     <div class="model-grid">
-      <div class="pillar reveal"><div class="ic"><svg class="icon"><use href="#i-cube"/></svg></div><h3>Platform ownership</h3><p>Cartesys retains the shared platform — toolchains, security patterns, AI orchestration, autonomous operations. This is the compounding asset.</p></div>
-      <div class="pillar reveal"><div class="ic"><svg class="icon"><use href="#i-carve"/></svg></div><h3>Client ownership</h3><p>Clients own their application code and infrastructure. Each product is fully separable — its own server, database, domain, identity. Transfer it with no entanglement.</p></div>
-      <div class="pillar reveal"><div class="ic"><svg class="icon"><use href="#i-compound"/></svg></div><h3>Compounding value</h3><p>197 capabilities and growing. Every engagement widens the moat. The methodology — not any single product — is the advantage that compounds.</p></div>
+      <div class="pillar"><div class="ic"><svg class="icon"><use href="#i-cube"/></svg></div><h3>Platform ownership</h3><p>Cartesys retains the shared platform: toolchains, security patterns, AI orchestration and the delivery engine. This is the compounding asset.</p></div>
+      <div class="pillar"><div class="ic"><svg class="icon"><use href="#i-carve"/></svg></div><h3>Client ownership</h3><p>Clients own their application code and infrastructure. Each product is fully separable, with its own server, database, domain and identity.</p></div>
+      <div class="pillar"><div class="ic"><svg class="icon"><use href="#i-compound"/></svg></div><h3>Compounding value</h3><p>246 registered capabilities and growing. The methodology, not any single product, is the advantage that compounds.</p></div>
     </div>
-    <div class="reuse-strip reveal">
+    <div class="reuse-strip">
       <div class="big grad">60–70%</div>
-      <p>of every new product is already built before it starts — reused from components already running in production. Headcount never scales with product count.</p>
+      <p>of every new product is already built before it starts, reused from components running in production. Headcount never scales with product count.</p>
     </div>
   </div>
 </section>
 
-<!-- ===== contact ===== -->
+<!-- contact -->
 <section id="contact" class="sec-contact">
   <div class="wrap">
-    <span class="eyebrow" style="justify-content:center">Let's build something</span>
-    <h2>Have an idea worth<br><span class="grad">operating itself?</span></h2>
-    <p class="sec-lede">Whether it's a product concept, a compliance challenge, or a workflow that needs intelligence — we'd love to talk.</p>
+    <span class="kicker">Let's build something</span>
+    <h2>Have an idea worth <span class="grad">running itself?</span></h2>
+    <p class="sec-lede">A product concept, a compliance challenge, or a workflow that needs intelligence. Tell us what you want to exist.</p>
     <a href="mailto:info@cartesys.ai" class="mail">info@cartesys.ai</a>
   </div>
 </section>
+</main>
 
-<!-- ===== footer ===== -->
 <footer>
   <div class="wrap">
     <div class="foot-inner">
       <a href="#top" class="brand"><svg class="mark" viewBox="0 0 24 24" style="stroke:url(#g1);fill:none;stroke-width:1.6;width:22px;height:22px"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg>cartesys</a>
       <div class="foot-links">
         <a href="/about">About</a>
+        <a href="#organization">Organization</a>
         <a href="#products">Products</a>
         <a href="#platform">Platform</a>
         <a href="#" onclick="openModal('privacy');return false">Privacy</a>
         <a href="#" onclick="openModal('terms');return false">Terms</a>
       </div>
     </div>
-    <div class="copy">© <span id="yr"></span> Cartesys LLC. All rights reserved. · Sanford, Florida</div>
+    <div class="copy">© <span id="yr">2026</span> Cartesys LLC. All rights reserved. Sanford, Florida.</div>
   </div>
 </footer>
 
@@ -538,44 +719,24 @@
   </div>
 </div>
 
+
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
-
-  // mobile nav
   var burger=document.getElementById('burger'),links=document.getElementById('navlinks');
-  burger.addEventListener('click',function(){links.classList.toggle('show')});
-  links.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){links.classList.remove('show')})});
-
-  // legal modals
+  burger.addEventListener('click',function(){var o=links.classList.toggle('show');burger.setAttribute('aria-expanded',o)});
+  links.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){links.classList.remove('show');burger.setAttribute('aria-expanded','false')})});
   function openModal(id){document.getElementById('m-'+id).classList.add('open')}
   function closeModal(id){document.getElementById('m-'+id).classList.remove('open')}
   document.querySelectorAll('.modal').forEach(function(m){m.addEventListener('click',function(e){if(e.target===m)m.classList.remove('open')})});
-
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // count-up
-  function countUp(el){
-    var target=+el.dataset.count, dur=1500, t0=null;
-    if(reduce){el.textContent=target;return;}
-    function step(ts){
-      if(!t0)t0=ts; var p=Math.min((ts-t0)/dur,1);
-      el.textContent=Math.round((1-Math.pow(1-p,3))*target);
-      if(p<1)requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
-  document.querySelectorAll('.num[data-count]').forEach(countUp);
-
-  // scroll reveal + fade-up failsafe (threshold 0.01 + 2s force-show)
-  var reveals=document.querySelectorAll('.reveal');
-  if(reduce){reveals.forEach(function(e){e.classList.add('in')});}
-  else{
-    var io=new IntersectionObserver(function(entries){
-      entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
-    },{threshold:0.01,rootMargin:'0px 0px -8% 0px'});
-    reveals.forEach(function(e){io.observe(e)});
-    setTimeout(function(){reveals.forEach(function(e){e.classList.add('in')})},2000);
-  }
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.modal.open').forEach(function(m){m.classList.remove('open')})});
+  // the org chart draws itself once; content is visible without JS, and a failsafe shows it after 2.5s
+  var org=document.querySelector('.org');
+  document.querySelectorAll('.org .dept').forEach(function(d,i){d.style.setProperty('--i',i)});
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){org.classList.add('drawn');io.disconnect()}})},{threshold:.15});
+    io.observe(org);
+  } else { org.classList.add('drawn'); }
+  setTimeout(function(){org.classList.add('drawn')},6000);
 </script>
 </body>
 </html>
