@@ -94,11 +94,12 @@
   .seat p{color:var(--muted);font-size:14.5px}
   .seat.person{border-color:var(--teal)}
   .stem{width:2px;height:28px;background:linear-gradient(var(--teal),var(--blue))}
-  .bus{height:2px;background:var(--grad);opacity:.6;margin:0 0 26px}
-  .depts{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;align-items:start}
+  .depts{--stub:26px;--half:32px;position:relative;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:calc(var(--half) * 2);row-gap:14px;align-items:start;max-width:980px;margin:0 auto}
+  .depts::before{content:"";position:absolute;left:50%;top:0;width:2px;margin-left:-1px;height:var(--spine,100%);background:linear-gradient(var(--blue),var(--border-bright) 180px)}
   .dept{border:1px solid var(--border);border-radius:12px;background:var(--bg-elev);padding:16px 16px 14px;position:relative}
-  .dept::before{content:"";position:absolute;left:50%;top:-27px;width:2px;height:26px;background:var(--border-bright)}
-  .dept:nth-child(n+6)::before{display:none}
+  .dept::before{content:"";position:absolute;top:var(--stub);height:2px;width:var(--half);background:var(--border-bright)}
+  .dept:nth-child(odd)::before{right:calc(-1 * var(--half) - 1px)}
+  .dept:nth-child(even)::before{left:calc(-1 * var(--half) - 1px)}
   .dept summary{list-style:none;cursor:pointer;display:block;position:relative;padding-left:22px;min-height:44px}
   .dept summary::-webkit-details-marker{display:none}
   .dept summary::before{content:"";position:absolute;left:2px;top:6px;border-style:solid;border-width:6px 0 6px 9px;border-color:transparent transparent transparent var(--teal);transition:transform .2s ease}
@@ -196,16 +197,14 @@
   .modal-close:hover{color:var(--text);border-color:var(--teal)}
 
   /* one orchestrated moment: the org chart draws itself when it comes into view */
-  .js .org .stem,.js .org .bus{transform-origin:top;transform:scaleY(0);transition:transform .45s ease}
-  .js .org .bus{transform-origin:center;transform:scaleX(0)}
+  .js .org .stem{transform-origin:top;transform:scaleY(0);transition:transform .45s ease}
+  .js .org .depts::before{transform-origin:top;transform:scaleY(0);transition:transform .6s ease .45s}
   .js .org .dept{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
   .js .org.drawn .stem{transform:none}
-  .js .org.drawn .bus{transform:none;transition-delay:.5s}
+  .js .org.drawn .depts::before{transform:none}
   .js .org.drawn .dept{opacity:1;transform:none;transition-delay:calc(.8s + var(--i) * 70ms)}
 
   @media(max-width:1060px){
-    .depts{grid-template-columns:repeat(3,1fr)}
-    .dept:nth-child(n+4)::before{display:none}
     .line{grid-template-columns:repeat(4,1fr)}
     .step:nth-child(4){border-right:0}
     .step:nth-child(-n+4){border-bottom:1px solid var(--border)}
@@ -221,8 +220,11 @@
     .burger{display:block}
   }
   @media(max-width:720px){
-    .depts{grid-template-columns:1fr 1fr}
-    .dept:nth-child(n+3)::before{display:none}
+    .depts{grid-template-columns:1fr;--half:16px;--stub:26px;padding-left:28px;max-width:none}
+    .depts::before{left:9px;margin-left:0}
+    .dept:nth-child(odd)::before,.dept:nth-child(even)::before{left:-20px;right:auto;width:19px}
+    .org-top{align-items:stretch}
+    .org-top .stem{margin-left:9px}
     .line{grid-template-columns:1fr}
     .step{border-right:0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:40px 1fr;column-gap:12px}
     .step::before{grid-row:span 2;margin:0;font-size:24px}
@@ -231,22 +233,20 @@
   }
   @media(max-width:600px){
     .wrap{padding:0 16px}
-    .cap-grid,.prod-grid,.plat-grid,.model-grid,.depts{grid-template-columns:1fr}
-    .depts{gap:8px}
+    .cap-grid,.prod-grid,.plat-grid,.model-grid{grid-template-columns:1fr}
+    .depts{row-gap:8px;--stub:34px}
     .dept{padding:12px 14px}
     .dept:not([open]) .remit{display:none}
     .dept summary{min-height:44px;display:flex;flex-direction:column;justify-content:center}
     .dept summary::before{top:50%;margin-top:-6px}
     .dept[open] summary::before{top:16px;margin-top:0}
-    .dept::before{display:none}
-    .bus{display:none}
     section{padding:72px 0}
     .ledger dt{font-size:22px}
     .ledger dt,.ledger dd{padding:11px 14px}
   }
   @media(prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
-    .js .org .stem,.js .org .bus,.js .org .dept{transform:none!important;opacity:1!important;transition:none!important}
+    .js .org .stem,.js .org .depts::before,.js .org .dept{transform:none!important;opacity:1!important;transition:none!important}
   }
 </style>
 </head>
@@ -361,7 +361,6 @@
       </div>
       <div class="stem"></div>
     </div>
-    <div class="bus"></div>
 
     <div class="depts">
       <details class="dept">
@@ -711,6 +710,11 @@
   // the org chart draws itself once; content is visible without JS, and a failsafe shows it after 2.5s
   var org=document.querySelector('.org');
   document.querySelectorAll('.org .dept').forEach(function(d,i){d.style.setProperty('--i',i)});
+  // the spine ends exactly at the last department's branch line
+  var depts=document.querySelector('.depts');
+  function spine(){var last=depts.lastElementChild;var stub=parseFloat(getComputedStyle(depts).getPropertyValue('--stub'))||26;depts.style.setProperty('--spine',(last.offsetTop+stub+2)+'px')}
+  document.querySelectorAll('.org .dept').forEach(function(d){d.addEventListener('toggle',spine)});
+  window.addEventListener('resize',spine); spine();
   if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){org.classList.add('drawn');io.disconnect()}})},{threshold:.15});
     io.observe(org);
